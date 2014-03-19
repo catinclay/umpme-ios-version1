@@ -109,21 +109,29 @@
                                                  [analyzeBackDataDic objectForKey:@"uid"]];
                 
                 if (downloadDataDic != nil) {
-                    BOOL syncToLocalDBSucc = [umpApiManager.umpSyncToLocalDB
-                                              syncToLocalDB_InsertDataToAutoLoginTableWithDataDic:
-                                              downloadDataDic];
+                    [umpApiManager.umpSyncToLocalDB
+                     syncToLocalDB_InsertDataToAutoLoginTableWithDataDic:
+                     downloadDataDic];
                     
-                    if (syncToLocalDBSucc) {
-                        [self
-                         performSegueWithIdentifier:umpCsntManager.umpCsntSegueManager.signupToLoginSuccessfully
-                         sender:self];
-                    }
+                } else {
+                    // Write the uid to local db deal with connection error.
+                    NSString *insertUidToAutoLoginTableSQL = [[NSString alloc]
+                                                              initWithFormat: @"INSERT INTO autologin (uid, is_sync) VALUES (%@, 0)",
+                                                              [analyzeBackDataDic objectForKey:@"uid"]];
+
+                    [umpApiManager.umpSyncToLocalDB
+                     syncToLocalDB_InsertDataToAutoLoginTableWithSQL:insertUidToAutoLoginTableSQL];
                 }
+                
+                [self
+                 performSegueWithIdentifier:umpCsntManager.umpCsntSegueManager.signupToLoginSuccessfully
+                 sender:self];
             }
+        } else {
+            self.signupErrorLabel.text = @"can not connect to Internet";
+            self.signupErrorLabel.textColor = umpCsntManager.umpCsntColorManager.umpRedColor;
         }
-        
     }
-    
 }
 
 - (IBAction)signupvcToLoginvcAction:(id)sender {

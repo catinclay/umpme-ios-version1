@@ -55,6 +55,20 @@
     }
 }
 
+- (BOOL)syncToLocalDB_InsertDataToAutoLoginTableWithSQL:(NSString *)sqlSentence {
+    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
+    
+    if ([umpApiManager.umpLocalDB openLocalDB] &&
+        [umpApiManager.umpLocalDB insertDataOnLocalDB:sqlSentence] &&
+        [umpApiManager.umpLocalDB closeLocalDB]) {
+        
+        return YES;
+        
+    } else {
+        return NO;
+    }
+}
+
 
 
 @end
