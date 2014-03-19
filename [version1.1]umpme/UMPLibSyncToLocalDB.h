@@ -13,7 +13,8 @@
 
 + (id)shareSyncToLocalDBManager;
 
-- (BOOL)syncToLocalDB_InsertDataToAutoLoginTableForUid:(NSString *)uid;
-//- (BOOL)syncToLocalDB_UpdateDataToAutoLoginTableForUid:(NSString *)uid;
+- (BOOL)syncToLocalDB_InsertDataToAutoLoginTableWithDataDic:(NSDictionary *)dataDic;
+//- (BOOL)syncToLocalDB_updateDataToAutoLoginTableWithDataDic:(NSDictionary *)dataDic;
+
 
 @end

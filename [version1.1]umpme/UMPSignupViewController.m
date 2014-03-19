@@ -104,13 +104,20 @@
                                                 withPasswdRequirement:self.passwdRequirementTextView];
             
             if (analyzeBackDataDic != nil) {
-                BOOL syncToLocalDBSucc = [umpApiManager.umpSyncToLocalDB
-                                          syncToLocalDB_InsertDataToAutoLoginTableForUid:[analyzeBackDataDic objectForKey:@"uid"]];
+                NSDictionary *downloadDataDic = [umpApiManager.umpDownloadData
+                                                 downloadAutoLoginTableDataForUid:
+                                                 [analyzeBackDataDic objectForKey:@"uid"]];
                 
-                if (syncToLocalDBSucc) {
-                    [self
-                     performSegueWithIdentifier:umpCsntManager.umpCsntSegueManager.signupToLoginSuccessfully
-                     sender:self];
+                if (downloadDataDic != nil) {
+                    BOOL syncToLocalDBSucc = [umpApiManager.umpSyncToLocalDB
+                                              syncToLocalDB_InsertDataToAutoLoginTableWithDataDic:
+                                              downloadDataDic];
+                    
+                    if (syncToLocalDBSucc) {
+                        [self
+                         performSegueWithIdentifier:umpCsntManager.umpCsntSegueManager.signupToLoginSuccessfully
+                         sender:self];
+                    }
                 }
             }
         }

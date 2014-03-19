@@ -20,12 +20,11 @@
     return umpSyncToLocalDB;
 }
 
-- (BOOL)syncToLocalDB_InsertDataToAutoLoginTableForUid:(NSString *)uid {
+- (BOOL)syncToLocalDB_InsertDataToAutoLoginTableWithDataDic:(NSDictionary *)dataDic {
     UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
     
-    // Download data from server db.
-    NSDictionary *dataDic = [umpApiManager.umpDownloadData downloadAutoLoginTableDataForUid:uid];
     if (dataDic != nil) {
+        NSString *uid = [dataDic objectForKey:@"uid"];
         NSString *ulogin_token = [dataDic objectForKey:@"ulogin_token"];
         NSString *token_update_date = [dataDic objectForKey:@"token_update_date"];
         NSString *token_update_time = [dataDic objectForKey:@"token_update_time"];
