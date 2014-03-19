@@ -23,6 +23,7 @@
     if (self = [super init]) {
         // Signup
         self.umpBhvSignup = [UMPBhvSignup shareSignupManager];
+        self.umpBhvLogin = [UMPBhvLogin shareBhvLoginManager];
     }
     return self;
 }

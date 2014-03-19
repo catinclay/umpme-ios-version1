@@ -7,10 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UMPCsntManager.h"
+#import "UMPLibApiManager.h"
 
 @interface UMPBhvLogin : NSObject
 
 + (id)shareBhvLoginManager;
+
+- (void)initStateForLoginErrorLabel:(UILabel *)loginErrorLabel;
+
+- (BOOL)checkInputForEmail:(UITextField *)uemailTextField andPasswd:(UITextField *)upasswdTextField withLoginErrorLable:(UILabel *)loginErrorLabel;
+
+- (NSDictionary *)dealWithInputWithEmail:(UITextField *)uemailTextField andPasswd:(UITextField *)upasswdTextField;
+
+- (NSDictionary *)talkToServerWithDataDic:(NSDictionary *)dataDic;
+
+- (NSDictionary *)analyzeBackDataDic:(NSDictionary *)backDataDic withEmailTextField:(UITextField *)uemailTextField andPasswdTextField:(UITextField *)upasswdTextField withLoginErrorLable:(UILabel *)loginErrorLabel;
+
 
 
 

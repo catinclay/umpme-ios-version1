@@ -10,6 +10,7 @@
 
 @interface UMPCsntColor : NSObject
 
+@property (strong, nonatomic) UIColor *umpBlackColor;
 @property (strong, nonatomic) UIColor *umpRedColor;
 
 + (id)shareCsntColorManager;

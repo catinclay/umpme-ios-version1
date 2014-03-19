@@ -21,6 +21,7 @@
 
 - (id)init {
     if (self = [super init]) {
+        self.umpBlackColor = [UIColor blackColor];
         self.umpRedColor = [UIColor
                             colorWithRed:231/255.0f
                             green:76/255.0f

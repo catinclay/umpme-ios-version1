@@ -68,7 +68,44 @@
 
 // Temp Action:
 - (IBAction)loginAction:(id)sender {
-    [self performSegueWithIdentifier:@"segue_loginvc_to_maintbc" sender:self];
+    //[self performSegueWithIdentifier:@"segue_loginvc_to_maintbc" sender:self];
+    
+    UMPBhvManager *umpBhvManager = [UMPBhvManager shareBhvManager];
+    
+    [umpBhvManager.umpBhvLogin initStateForLoginErrorLabel:self.loginErrorLabel];
+    if ([umpBhvManager.umpBhvLogin
+         checkInputForEmail:self.uemailTextField
+         andPasswd:self.upasswdTextField withLoginErrorLable:self.loginErrorLabel]) {
+        NSDictionary *dealWithDataBackDataDic = [umpBhvManager.umpBhvLogin
+                                                 dealWithInputWithEmail:self.uemailTextField
+                                                 andPasswd:self.upasswdTextField];
+        
+        if (dealWithDataBackDataDic != nil) {
+            NSDictionary *serverBackDataDic = [umpBhvManager.umpBhvLogin
+                                               talkToServerWithDataDic:dealWithDataBackDataDic];
+            
+            if (serverBackDataDic != nil) {
+                NSDictionary *analyzeBackDataDic = [umpBhvManager.umpBhvLogin
+                                                    analyzeBackDataDic:serverBackDataDic
+                                                    withEmailTextField:self.uemailTextField
+                                                    andPasswdTextField:self.upasswdTextField
+                                                    withLoginErrorLable:self.loginErrorLabel];
+                
+                if (analyzeBackDataDic != nil) {
+                    NSString *backUid = [analyzeBackDataDic objectForKey:@"uid"];
+                    NSLog(@"[debug][temp][login vc] uid = %@", backUid);
+                    
+                } else {
+                    
+                }
+                
+            } else {
+                
+            }
+        }
+        
+    }
+    
 }
 
 - (IBAction)loginvcToSignupvcAction:(id)sender {
