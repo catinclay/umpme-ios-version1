@@ -126,9 +126,7 @@
                                 initWithFormat:@"?uemail=%@&upasswd=%@", std_uemail, md5_upasswd];
     // Upload the request to server.
     NSMutableURLRequest *request = [umpApiManager.umpNetwork
-                                    generateGETRequestForDeviceCategory:@"mobile"
-                                    forDevice:@"ios"
-                                    forService:@"signup"
+                                    generateGETRequestForService:@"signup"
                                     withMessage:requestMessage];
     
     NSDictionary *backDataDic = [umpApiManager.umpNetwork communicateWithServerWithRequest:request];

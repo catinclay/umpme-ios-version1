@@ -12,6 +12,8 @@
 
 @property (strong, nonatomic) NSString *umpHostAddress;
 @property (strong, nonatomic) NSString *umpServerWeirdString;
+@property (strong, nonatomic) NSString *umpDeviceCategory;
+@property (strong, nonatomic) NSString *umpDevice;
 
 + (id)shareCsntNetworkManager;
 

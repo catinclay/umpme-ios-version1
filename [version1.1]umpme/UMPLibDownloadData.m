@@ -25,9 +25,7 @@
     NSDictionary *dataDic = nil;
     NSString *message = [[NSString alloc] initWithFormat:@"?uid=%@", uid];
     NSMutableURLRequest *request = [umpApiManager.umpNetwork
-                                    generateGETRequestForDeviceCategory:@"mobile"
-                                    forDevice:@"ios"
-                                    forService:@"downloadautologintabledata"
+                                    generateGETRequestForService:@"downloadautologintabledata"
                                     withMessage:message];
     
     NSDictionary *connectionBackDataDic = [umpApiManager.umpNetwork

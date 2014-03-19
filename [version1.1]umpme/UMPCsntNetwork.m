@@ -23,6 +23,8 @@
     if (self = [super init]) {
         self.umpHostAddress = @"http://localhost:8000";
         self.umpServerWeirdString = @"iosisrealgoodsystemforumpme";
+        self.umpDeviceCategory = @"mobile";
+        self.umpDevice = @"ios";
     }
     return self;
 }

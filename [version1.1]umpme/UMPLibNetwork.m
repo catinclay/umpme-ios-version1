@@ -25,19 +25,21 @@
         UMPCsntManager *umpCsntManager = [UMPCsntManager shareCsntManager];
         self.umpHostAddress = umpCsntManager.umpCsntNetworkManager.umpHostAddress;
         self.umpServerWeirdString = umpCsntManager.umpCsntNetworkManager.umpServerWeirdString;
+        self.umpDeviceCategory = umpCsntManager.umpCsntNetworkManager.umpDeviceCategory;
+        self.umpDevice = umpCsntManager.umpCsntNetworkManager.umpDevice;
     }
     return self;
 }
 
 
-- (NSMutableURLRequest *)generateGETRequestForDeviceCategory:(NSString *)deviceCategory forDevice:(NSString *)device forService:(NSString *)service withMessage:(NSString *)message {
+- (NSMutableURLRequest *)generateGETRequestForService:(NSString *)service withMessage:(NSString *)message {
     
     NSString *wholeURLString = [[NSString alloc]
                                 initWithFormat:@"%@/%@/%@/%@/get/%@/%@",
                                 self.umpHostAddress,
                                 self.umpServerWeirdString,
-                                deviceCategory,
-                                device,
+                                self.umpDeviceCategory,
+                                self.umpDevice,
                                 service,
                                 message];
     NSURL *url = [[NSURL alloc] initWithString:wholeURLString];
@@ -48,12 +50,16 @@
     return request;
 }
 
-- (NSMutableURLRequest *)generatePOSTRequestForDeviceCategory:(NSString *)deviceCategory forDevice:(NSString *)device forService:(NSString *)service withContentType:(NSString *)contentType withPostBody:(NSData *)postBody {
+- (NSMutableURLRequest *)generatePOSTRequestForService:(NSString *)service withContentType:(NSString *)contentType withPostBody:(NSData *)postBody {
     
     NSString *wholeURLString = [[NSString alloc]
                                 initWithFormat:@"%@/%@/%@/%@/post/%@/",
                                 self.umpHostAddress,
-                                self.umpServerWeirdString, deviceCategory, device, service];
+                                self.umpServerWeirdString,
+                                self.umpDeviceCategory,
+                                self.umpDevice,
+                                service];
+    
     NSURL *url = [[NSURL alloc] initWithString:wholeURLString];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     [request setHTTPMethod:@"POST"];
@@ -86,9 +92,7 @@
     if (encodingJsonError == nil) {
         __block BOOL uploadSuccessful = NO;
         NSMutableURLRequest *request = [self
-                                        generatePOSTRequestForDeviceCategory:@"mobile"
-                                        forDevice:@"ios"
-                                        forService:@"uploadprofileimage"
+                                        generatePOSTRequestForService:@"uploadprofileimage"
                                         withContentType:@"application/json"
                                         withPostBody:profileImageDicJson];
         
@@ -123,9 +127,7 @@
     NSString *requestMessage = [[NSString alloc] initWithFormat:@"?uid=%ld", (long)uid];
     
     NSMutableURLRequest *request = [self
-                                    generateGETRequestForDeviceCategory:@"mobile"
-                                    forDevice:@"ios"
-                                    forService:@"downloadprofileimage"
+                                    generateGETRequestForService:@"downloadprofileimage"
                                     withMessage:requestMessage];
     
     __block UIImage *profileImage = nil;

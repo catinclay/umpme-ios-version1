@@ -16,12 +16,14 @@
 
 @property (strong, nonatomic) NSString *umpHostAddress;
 @property (strong, nonatomic) NSString *umpServerWeirdString;
+@property (strong, nonatomic) NSString *umpDeviceCategory;
+@property (strong, nonatomic) NSString *umpDevice;
 
 + (id)shareNetWorkManager;
 
-- (NSMutableURLRequest *)generateGETRequestForDeviceCategory:(NSString *)deviceCategory forDevice:(NSString *)device forService:(NSString *)service withMessage:(NSString *)message;
+- (NSMutableURLRequest *)generateGETRequestForService:(NSString *)service withMessage:(NSString *)message;
 
-- (NSMutableURLRequest *)generatePOSTRequestForDeviceCategory:(NSString *)deviceCategory forDevice:(NSString *)device forService:(NSString *)service withContentType:(NSString *)contentType withPostBody:(NSData *)postBody;
+- (NSMutableURLRequest *)generatePOSTRequestForService:(NSString *)service withContentType:(NSString *)contentType withPostBody:(NSData *)postBody;
 
 - (BOOL)uploadProfileImageForUid:(NSInteger *)uid withProfileImage:(UIImage *)profileImage;
 
