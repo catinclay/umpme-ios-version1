@@ -10,4 +10,15 @@
 
 @interface UMPViewController : UIViewController
 
+
+
+
+
+
+// Temp:
+
+- (IBAction)AutoLoginAction:(id)sender;
+- (IBAction)autoLoginFailAction:(id)sender;
+
+- (IBAction)createAutoLoginDBAndTable:(id)sender;
 @end
