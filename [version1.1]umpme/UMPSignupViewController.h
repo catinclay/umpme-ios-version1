@@ -25,7 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *signupErrorLabel;
 @property (weak, nonatomic) IBOutlet UITextView *passwdRequirementTextView;
 
-@property (strong, nonatomic) NSString *signupSucc;
+
 
 // Temp Action:
 - (IBAction)signupAction:(id)sender;

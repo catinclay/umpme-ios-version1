@@ -38,6 +38,9 @@
         
         // Download Data.
         self.umpDownloadData = [UMPLibDownloadData shareDownloadDataManager];
+        
+        // Sync to local DB.
+        self.umpSyncToLocalDB = [UMPLibSyncToLocalDB shareSyncToLocalDBManager];
     }
     return self;
 }

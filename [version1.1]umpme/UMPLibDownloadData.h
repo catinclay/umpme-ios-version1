@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "UMPLibApiManager.h"
 
+
+@class UMPLibApiManager;
 @interface UMPLibDownloadData : NSObject
 
 + (id)shareDownloadDataManager;

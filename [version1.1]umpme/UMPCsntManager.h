@@ -21,6 +21,7 @@
 @property (strong, nonatomic) UMPCsntColor *umpCsntColorManager;
 @property (strong, nonatomic) UMPCsntSegue *umpCsntSegueManager;
 
+
 + (id)shareCsntManager;
 
 @end

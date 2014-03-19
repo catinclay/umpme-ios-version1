@@ -10,12 +10,22 @@
 #import "UMPLibApiManager.h"
 #import "UMPCsntManager.h"
 
-//@class UMPSignupViewController;
 
 @interface UMPBhvSignup : NSObject
 
 + (id)shareSignupManager;
 
-- (BOOL)userSignupWithEmail:(UITextField *)uemailTextField withConfirmEmail:(UITextField *)uconfirmEmailTextField withPasswd:(UITextField *)upasswdTextField withConfirmPasswd:(UITextField *)uconfirmPasswdTextField withSignupError:(UILabel *)signupErrorLabel withPasswdRequirement:(UITextView *)passwdRequirementTextView;
+- (void)initStateForErrorLabel:(UILabel *)signupErrorLabel andPasswdRequirementTextView:(UITextView *)passwdRequirementTextView;
+
+- (NSDictionary *)dealWithInput:(UITextField *)uemailTextField withConfirmEmail:(UITextField *)uconfirmEmailTextField withPasswd:(UITextField *)upasswdTextField withConfirmPasswd:(UITextField *)uconfirmPasswdTextField;
+
+- (BOOL)checkInputForDataDic:(NSDictionary *)dataDic withEmail:(UITextField *)uemailTextField withConfirmEmail:(UITextField *)uconfirmEmailTextField withPasswd:(UITextField *)upasswdTextField withConfirmPasswd:(UITextField *)uconfirmPasswdTextField withSignupError:(UILabel *)signupErrorLabel withPasswdRequirement:(UITextView *)passwdRequirementTextView;
+
+-(NSDictionary *)encodeInputForDataDic:(NSDictionary *)dataDic;
+
+- (NSDictionary *)talkToServerWithDataDic:(NSDictionary *)dataDic;
+
+- (NSDictionary *)analyzeServerBackDataWithDataDic:(NSDictionary *)dataDic withEmail:(UITextField *)uemailTextField withConfirmEmail:(UITextField *)uconfirmEmailTextField withPasswd:(UITextField *)upasswdTextField withConfirmPasswd:(UITextField *)uconfirmPasswdTextField withSignupError:(UILabel *)signupErrorLabel withPasswdRequirement:(UITextView *)passwdRequirementTextView;
+
 
 @end

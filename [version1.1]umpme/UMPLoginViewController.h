@@ -17,6 +17,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *autoLoginSwitchLabel;
 @property (weak, nonatomic) IBOutlet UILabel *loginErrorLabel;
 
+@property (strong, nonatomic) NSString *initialEmailText;
+@property (strong, nonatomic) NSString *initialPasswdText;
+
 
 
 

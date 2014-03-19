@@ -10,10 +10,6 @@
 #import <sqlite3.h>
 #import "UMPCsntManager.h"
 
-#ifndef DEBUG
-#define DEBUG YES
-#endif
-
 @interface UMPLibLocalDB : NSObject {
     sqlite3 *currDB;
 }

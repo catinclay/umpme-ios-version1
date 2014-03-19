@@ -63,26 +63,58 @@
 // Temp Action:
 - (IBAction)signupAction:(id)sender {
     
-    self.signupSucc = @"NO";
-    
     // Get umpme behavior manager.
     UMPBhvManager *umpBhvManager = [UMPBhvManager shareBhvManager];
+    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
     UMPCsntManager *umpCsntManager = [UMPCsntManager shareCsntManager];
     
-    BOOL signupSucc = [umpBhvManager.umpBhvSignup
-                               userSignupWithEmail:self.uemailTextField
-                               withConfirmEmail:self.uconfirmEmailTextField
-                               withPasswd:self.upasswdTextField
-                               withConfirmPasswd:self.uconfirmPasswdTextField
-                               withSignupError:self.signupErrorLabel
-                               withPasswdRequirement:self.passwdRequirementTextView];
+    [umpBhvManager.umpBhvSignup
+     initStateForErrorLabel:self.signupErrorLabel
+     andPasswdRequirementTextView:self.passwdRequirementTextView];
     
-    if (signupSucc) {
-        [self performSegueWithIdentifier:umpCsntManager.umpCsntSegueManager.signupToLoginSuccessfully
-                                  sender:self];
-        NSLog(@"[debug][signup vc] yes");
-    } else {
-        NSLog(@"[debug][signup vc] no");
+    NSDictionary *dealWithInputBackDataDic = [umpBhvManager.umpBhvSignup
+                                              dealWithInput:self.uemailTextField
+                                              withConfirmEmail:self.uconfirmEmailTextField
+                                              withPasswd:self.upasswdTextField
+                                              withConfirmPasswd:self.uconfirmPasswdTextField];
+    
+    BOOL checkInputWell = [umpBhvManager.umpBhvSignup
+                           checkInputForDataDic:dealWithInputBackDataDic
+                           withEmail:self.uemailTextField
+                           withConfirmEmail:self.uconfirmEmailTextField
+                           withPasswd:self.upasswdTextField
+                           withConfirmPasswd:self.uconfirmPasswdTextField
+                           withSignupError:self.signupErrorLabel
+                           withPasswdRequirement:self.passwdRequirementTextView];
+    
+    if (checkInputWell) {
+        NSDictionary *encodeInputBackDataDic = [umpBhvManager.umpBhvSignup
+                                                encodeInputForDataDic:dealWithInputBackDataDic];
+
+        NSDictionary *talkToServerBackDataDic = [umpBhvManager.umpBhvSignup
+                                                 talkToServerWithDataDic:encodeInputBackDataDic];
+        if (talkToServerBackDataDic != nil) {
+            NSDictionary *analyzeBackDataDic = [umpBhvManager.umpBhvSignup
+                                                analyzeServerBackDataWithDataDic:talkToServerBackDataDic
+                                                withEmail:self.uemailTextField
+                                                withConfirmEmail:self.uconfirmEmailTextField
+                                                withPasswd:self.upasswdTextField
+                                                withConfirmPasswd:self.uconfirmPasswdTextField
+                                                withSignupError:self.signupErrorLabel
+                                                withPasswdRequirement:self.passwdRequirementTextView];
+            
+            if (analyzeBackDataDic != nil) {
+                BOOL syncToLocalDBSucc = [umpApiManager.umpSyncToLocalDB
+                                          syncToLocalDB_InsertDataToAutoLoginTableForUid:[analyzeBackDataDic objectForKey:@"uid"]];
+                
+                if (syncToLocalDBSucc) {
+                    [self
+                     performSegueWithIdentifier:umpCsntManager.umpCsntSegueManager.signupToLoginSuccessfully
+                     sender:self];
+                }
+            }
+        }
+        
     }
     
 }
@@ -101,9 +133,9 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UMPCsntManager *umpCsntManager = [UMPCsntManager shareCsntManager];
     if ([[segue identifier] isEqualToString:umpCsntManager.umpCsntSegueManager.signupToLoginSuccessfully]) {
-        UMPLoginViewController *tempLoginVC = [segue destinationViewController];
-        tempLoginVC.uemailTextField.text = self.uemailTextField.text;
-        tempLoginVC.upasswdTextField.text = self.upasswdTextField.text;
+        UMPLoginViewController *tempLoginVC = (UMPLoginViewController *)[segue destinationViewController];
+        tempLoginVC.initialEmailText = self.uemailTextField.text;
+        tempLoginVC.initialPasswdText = self.upasswdTextField.text;
     }
 }
 

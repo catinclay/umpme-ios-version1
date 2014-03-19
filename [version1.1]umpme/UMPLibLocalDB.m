@@ -44,7 +44,7 @@
     // Create local db.
     if (sqlite3_open([localDBPath UTF8String], &currDB) == SQLITE_OK) return YES;
     else {
-        if (DEBUG) NSLog(@"[Debug][Error]Can not create the local db which is named %@", self.localDBName);
+        if (UMPME_DEBUG) NSLog(@"[Debug][Error]Can not create the local db which is named %@", self.localDBName);
         return NO;
     }
 }
@@ -58,7 +58,7 @@
         [[NSFileManager defaultManager] removeItemAtPath:localDBPath error:nil];
         return YES;
     } else {
-        if (DEBUG) NSLog(@"[Debug][Error]Can not delete the local db which is named %@", self.localDBName);
+        if (UMPME_DEBUG) NSLog(@"[Debug][Error]Can not delete the local db which is named %@", self.localDBName);
         return NO;
     }
 }
@@ -70,7 +70,7 @@
     // Open local db.
     if (sqlite3_open([localDBPath UTF8String], &currDB) == SQLITE_OK) return YES;
     else {
-        if (DEBUG) NSLog(@"[Debug][Error]Can not open the local db which is named %@", self.localDBName);
+        if (UMPME_DEBUG) NSLog(@"[Debug][Error]Can not open the local db which is named %@", self.localDBName);
         return NO;
     }
 }
@@ -78,10 +78,9 @@
 // Close DB
 - (BOOL)closeLocalDB {
     if (sqlite3_close(currDB) == SQLITE_OK) {
-        if (DEBUG) NSLog(@"[Debug]Close curr db.");
         return YES;
     } else {
-        if (DEBUG) NSLog(@"[Debug][Error]Can not close curr db.");
+        if (UMPME_DEBUG) NSLog(@"[Debug][Error]Can not close curr db.");
         return NO;
     }
 }
@@ -92,12 +91,12 @@
         char *executeSQLError;
         if (sqlite3_exec(currDB, [sqlSentence UTF8String], NULL, NULL, &executeSQLError) == SQLITE_OK) return YES;
         else {
-            if (DEBUG) NSLog(@"[Debug][Error]Can not execute the sql (%@) on the local db.", sqlSentence);
+            if (UMPME_DEBUG) NSLog(@"[Debug][Error]Can not execute the sql (%@) on the local db.", sqlSentence);
             return NO;
         }
         
     } else {
-        if (DEBUG) NSLog(@"[Debug][Error]The input of local db name is empty.");
+        if (UMPME_DEBUG) NSLog(@"[Debug][Error]The input of local db name is empty.");
         return NO;
     }
 }
@@ -135,12 +134,12 @@
             sqlite3_finalize(sql_statement);
             return queryResArray;
         } else {
-            if (DEBUG) NSLog(@"[Debug][Error]The num of res is not equal to the SQITE_ROW.");
+            if (UMPME_DEBUG) NSLog(@"[Debug][Error]The num of res is not equal to the SQITE_ROW.");
             return nil;
         }
         
     } else {
-        if (DEBUG) NSLog(@"[Debug][Error]Can not execute query on the local db.");
+        if (UMPME_DEBUG) NSLog(@"[Debug][Error]Can not execute query on the local db.");
         return nil;
     }
 }
@@ -152,7 +151,7 @@
         return [self executeSQLOnLocalDB:sqlSentence];
         
     } else {
-        if (DEBUG) NSLog(@"[Debug][Error]The input of table name can not be empty.");
+        if (UMPME_DEBUG) NSLog(@"[Debug][Error]The input of table name can not be empty.");
         return NO;
     }
 }
@@ -164,7 +163,7 @@
         return [self executeSQLOnLocalDB:sqlSentence];
         
     } else {
-        if (DEBUG) NSLog(@"[Debug][Error]The input of table name can not be empty.");
+        if (UMPME_DEBUG) NSLog(@"[Debug][Error]The input of table name can not be empty.");
         return NO;
     }
 }

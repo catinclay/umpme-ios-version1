@@ -187,12 +187,14 @@
         [condition wait];
     }
     [condition unlock];
-    NSMutableDictionary *connectionBackMutableDic = [[NSMutableDictionary alloc] init];
-    [connectionBackMutableDic setObject:connectionBackResponse forKey:@"backResponse"];
-    [connectionBackMutableDic setObject:connectionBackDate forKey:@"backData"];
-    [connectionBackMutableDic setObject:connectionBackError forKey:@"backError"];
     
-    NSDictionary *connectionBackDic = [[NSDictionary alloc] initWithDictionary:connectionBackMutableDic];
+    NSDictionary *connectionBackDic = nil;
+    if (connectionBackError == nil) {
+        NSMutableDictionary *connectionBackMutableDic = [[NSMutableDictionary alloc] init];
+        [connectionBackMutableDic setObject:connectionBackResponse forKey:@"backResponse"];
+        [connectionBackMutableDic setObject:connectionBackDate forKey:@"backData"];
+        connectionBackDic = [[NSDictionary alloc] initWithDictionary:connectionBackMutableDic];
+    }
     
     return connectionBackDic;
 }

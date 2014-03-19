@@ -13,6 +13,7 @@
 #import "UMPLibNetwork.h"
 #import "UMPLibDateTime.h"
 #import "UMPLibDownloadData.h"
+#import "UMPLibSyncToLocalDB.h"
 
 @interface UMPLibApiManager : NSObject
 
@@ -33,6 +34,9 @@
 
 // Download Data
 @property (strong, nonatomic) UMPLibDownloadData *umpDownloadData;
+
+// Sync to local DB.
+@property (strong, nonatomic) UMPLibSyncToLocalDB *umpSyncToLocalDB;
 
 + (id)shareApiManager;
 

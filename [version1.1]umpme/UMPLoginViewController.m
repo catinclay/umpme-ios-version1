@@ -27,6 +27,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    if ([self.initialEmailText length] > 0 && [self.initialPasswdText length] > 0) {
+        self.uemailTextField.text = self.initialEmailText;
+        self.upasswdTextField.text = self.initialPasswdText;
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning

@@ -7,6 +7,7 @@
 //
 
 #import "UMPLibDownloadData.h"
+#import "UMPLibApiManager.h"
 
 @implementation UMPLibDownloadData
 
@@ -32,14 +33,35 @@
     NSDictionary *connectionBackDataDic = [umpApiManager.umpNetwork
                                            communicateWithServerWithRequest:request];
     
+    if (connectionBackDataDic == nil) return nil;
     
     NSData *connectionBackData = [connectionBackDataDic objectForKeyedSubscript:@"backData"];
-    NSError *connectionBackError = [connectionBackDataDic objectForKeyedSubscript:@"backError"];
     
-    if ([connectionBackData length] > 0 && connectionBackError == nil) {
+    NSMutableDictionary *dataMutableDic = [[NSMutableDictionary alloc] init];
+    
+    if ([connectionBackData length] > 0) {
+        NSError *jsonError = nil;
+        NSDictionary *jsonDic = [NSJSONSerialization
+                                 JSONObjectWithData:connectionBackData
+                                 options:NSJSONReadingAllowFragments error:&jsonError];
         
+        if (jsonError == nil) {
+            if ([[jsonDic objectForKey:@"error"] isEqualToString:@"no"]) {
+                [dataMutableDic setObject:[jsonDic objectForKey:@"uid"] forKey:@"uid"];
+                [dataMutableDic setObject:[jsonDic objectForKey:@"ulogin_token"] forKey:@"ulogin_token"];
+                [dataMutableDic setObject:[jsonDic objectForKey:@"token_update_date"]
+                                   forKey:@"token_update_date"];
+                [dataMutableDic setObject:[jsonDic objectForKey:@"token_update_time"]
+                                   forKey:@"token_update_time"];
+                [dataMutableDic setObject:[jsonDic objectForKey:@"allow_autologin"]
+                                   forKey:@"allow_autologin"];
+                
+                dataDic = [[NSDictionary alloc] initWithDictionary:dataMutableDic];
+            }
+        }
     }
-    
+    return dataDic;
 }
+
 
 @end

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>C7EA5F17-BA8E-43A4-9ADF-65AF77CFA9FA</string>
+	<key>IDESourceControlProjectName</key>
+	<string>[version1.1]umpme</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>90116F6F-09DF-4EC0-8EC6-4339D79F973F</key>
+		<string>https://github.com/ZhaonanLi/umpme-ios-version1.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>[version1.1]umpme.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>90116F6F-09DF-4EC0-8EC6-4339D79F973F</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/ZhaonanLi/umpme-ios-version1.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>90116F6F-09DF-4EC0-8EC6-4339D79F973F</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>90116F6F-09DF-4EC0-8EC6-4339D79F973F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>[version1.1]umpme</string>
+		</dict>
+	</array>
+</dict>
+</plist>

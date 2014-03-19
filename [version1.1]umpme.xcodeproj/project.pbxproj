@@ -36,6 +36,7 @@
 		3D7CA34618D4C5CF00B45472 /* UMPPersonalPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D7CA34518D4C5CF00B45472 /* UMPPersonalPageViewController.m */; };
 		3D7CA34A18D4D30F00B45472 /* UMPLibRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D7CA34918D4D30F00B45472 /* UMPLibRegex.m */; };
 		3D7CA34D18D4D50600B45472 /* UMPLibLocalDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D7CA34C18D4D50600B45472 /* UMPLibLocalDB.m */; };
+		3DB55EB018D9591D0053413E /* UMPLibSyncToLocalDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB55EAF18D9591D0053413E /* UMPLibSyncToLocalDB.m */; };
 		3DF1917818D5516E00B49BA6 /* UMPLibApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1917718D5516E00B49BA6 /* UMPLibApiManager.m */; };
 		3DF1917C18D553AE00B49BA6 /* UMPBhvSignup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1917B18D553AE00B49BA6 /* UMPBhvSignup.m */; };
 		3DF1917F18D557C200B49BA6 /* UMPLibMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1917E18D557C200B49BA6 /* UMPLibMD5.m */; };
@@ -101,6 +102,8 @@
 		3D7CA34918D4D30F00B45472 /* UMPLibRegex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMPLibRegex.m; sourceTree = "<group>"; };
 		3D7CA34B18D4D50600B45472 /* UMPLibLocalDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMPLibLocalDB.h; sourceTree = "<group>"; };
 		3D7CA34C18D4D50600B45472 /* UMPLibLocalDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMPLibLocalDB.m; sourceTree = "<group>"; };
+		3DB55EAE18D9591D0053413E /* UMPLibSyncToLocalDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMPLibSyncToLocalDB.h; sourceTree = "<group>"; };
+		3DB55EAF18D9591D0053413E /* UMPLibSyncToLocalDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMPLibSyncToLocalDB.m; sourceTree = "<group>"; };
 		3DF1917618D5516E00B49BA6 /* UMPLibApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMPLibApiManager.h; sourceTree = "<group>"; };
 		3DF1917718D5516E00B49BA6 /* UMPLibApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMPLibApiManager.m; sourceTree = "<group>"; };
 		3DF1917A18D553AE00B49BA6 /* UMPBhvSignup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMPBhvSignup.h; sourceTree = "<group>"; };
@@ -142,6 +145,10 @@
 		3D4EE0A918D6B9CD00F14269 /* umpme lib api details */ = {
 			isa = PBXGroup;
 			children = (
+				3DA6C72018D97FC700966BDF /* image */,
+				3DB55EAD18D955440053413E /* sync to server db */,
+				3DB55EAC18D9552C0053413E /* extract data from local db */,
+				3DB55EAB18D955100053413E /* sync to local db */,
 				3DFE256C18D93164009146B8 /* download data */,
 				3D4EE0AE18D6BA3300F14269 /* datetime */,
 				3D4EE0AD18D6BA2600F14269 /* network */,
@@ -373,6 +380,36 @@
 			name = "umpme lib api";
 			sourceTree = "<group>";
 		};
+		3DA6C72018D97FC700966BDF /* image */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = image;
+			sourceTree = "<group>";
+		};
+		3DB55EAB18D955100053413E /* sync to local db */ = {
+			isa = PBXGroup;
+			children = (
+				3DB55EAE18D9591D0053413E /* UMPLibSyncToLocalDB.h */,
+				3DB55EAF18D9591D0053413E /* UMPLibSyncToLocalDB.m */,
+			);
+			name = "sync to local db";
+			sourceTree = "<group>";
+		};
+		3DB55EAC18D9552C0053413E /* extract data from local db */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "extract data from local db";
+			sourceTree = "<group>";
+		};
+		3DB55EAD18D955440053413E /* sync to server db */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "sync to server db";
+			sourceTree = "<group>";
+		};
 		3DF1917918D5532900B49BA6 /* umpme behavior */ = {
 			isa = PBXGroup;
 			children = (
@@ -510,6 +547,7 @@
 				3D7CA34018D4C5AB00B45472 /* UMPLoginViewController.m in Sources */,
 				3D5283D118D8D6E800AAFA1F /* UMPCsntLocalDB.m in Sources */,
 				3D5283EB18D8E0AB00AAFA1F /* UMPCsntSegue.m in Sources */,
+				3DB55EB018D9591D0053413E /* UMPLibSyncToLocalDB.m in Sources */,
 				3D7CA34D18D4D50600B45472 /* UMPLibLocalDB.m in Sources */,
 				3DF1917818D5516E00B49BA6 /* UMPLibApiManager.m in Sources */,
 				3D7CA34318D4C5B800B45472 /* UMPSignupViewController.m in Sources */,
