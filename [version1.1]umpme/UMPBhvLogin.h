@@ -24,7 +24,9 @@
 
 - (NSDictionary *)analyzeBackDataDic:(NSDictionary *)backDataDic withEmailTextField:(UITextField *)uemailTextField andPasswdTextField:(UITextField *)upasswdTextField withLoginErrorLable:(UILabel *)loginErrorLabel;
 
+- (BOOL)updateLocalAutologinFlagForUid:(NSString *)uid basedOnSwitch:(UISwitch *)autoLoginSwitch;
 
+- (BOOL)updateServerAutoLoginFlagForUid:(NSString *)uid basedOnSwitch:(UISwitch *)autoLoginSwitch;
 
 
 @end

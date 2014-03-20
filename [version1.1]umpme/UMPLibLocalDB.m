@@ -168,4 +168,56 @@
     }
 }
 
+// Create user local cache tables
+- (BOOL)createUserLocalCacheTables {
+    
+    BOOL openBoolFlag = [self openLocalDB];
+    
+    // Create user login table.
+    NSString *createUserLoginTableSQL = @"CREATE TABLE IF NOT EXISTS login (uid INTEGER PRIMARY KEY, login_id INTEGER)";
+    BOOL createLoginTableBoolFalg = [self createTableOnLocalDB:createUserLoginTableSQL];
+    
+    // Create instant messaging receive table.
+    NSString *createIntMsgTableSQL = @"CREATE TABLE IF NOT EXISTS intmsg_receive (intmsg_local_id INTEGER PRIMARY KEY AUTOINCREMENT, intmsg_server_id INTEGER, from_friend_uid INTEGER, intmsg TEXT, is_read INTEGER, friend_send_date TEXT, friend_send_time TEXT)";
+    BOOL createIntMsgTableBoolFlag = [self createTableOnLocalDB:createIntMsgTableSQL];
+    
+    BOOL closeBoolFlag = [self closeLocalDB];
+    
+    if (openBoolFlag && createLoginTableBoolFalg &&
+        createIntMsgTableBoolFlag && closeBoolFlag) {
+        
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+// Drop user local cache tables
+- (BOOL)dropUserLocalCacheTables {
+    BOOL dropLoginTableBoolFlag = [self dropTableOnLocalDB:@"login"];
+    BOOL dropIntMsgTableBoolFlag = [self dropTableOnLocalDB:@"intmsg_receive"];
+    
+    if (dropLoginTableBoolFlag && dropIntMsgTableBoolFlag) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+// Clear auto login table.
+- (BOOL)clearAutoLoginTable {
+    return [self clearTableOnLocalDB:@"autologin"];
+}
+
 @end
+
+
+
+
+
+
+
+
+
+
+

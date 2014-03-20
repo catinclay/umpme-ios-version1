@@ -15,7 +15,8 @@
 
 - (BOOL)syncToLocalDB_InsertDataToAutoLoginTableWithDataDic:(NSDictionary *)dataDic;
 - (BOOL)syncToLocalDB_InsertDataToAutoLoginTableWithSQL:(NSString *)sqlSentence;
-//- (BOOL)syncToLocalDB_updateDataToAutoLoginTableWithDataDic:(NSDictionary *)dataDic;
+- (BOOL)syncToLocalDB_updateAutoLoginFlagToAutoLoginTableWithDataDic:(NSDictionary *)dataDic;
+- (BOOL)syncToLocalDB_updateAutoLoginAllDataToAutoLoginTableWithDataDic:(NSDictionary *)dataDic;
 
 
 @end

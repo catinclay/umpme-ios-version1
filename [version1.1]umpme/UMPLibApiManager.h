@@ -14,6 +14,10 @@
 #import "UMPLibDateTime.h"
 #import "UMPLibDownloadData.h"
 #import "UMPLibSyncToLocalDB.h"
+#import "UMPLibSyncToServerDB.h"
+#import "UMPLibExtractDataFromLocalDB.h"
+#import "UMPLibSyncBothSidesDB.h"
+
 
 @interface UMPLibApiManager : NSObject
 
@@ -37,6 +41,15 @@
 
 // Sync to local DB.
 @property (strong, nonatomic) UMPLibSyncToLocalDB *umpSyncToLocalDB;
+
+// Sync to server DB.
+@property (strong, nonatomic) UMPLibSyncToServerDB *umpSyncToServerDB;
+
+// Extract data from local DB.
+@property (strong, nonatomic) UMPLibExtractDataFromLocalDB *umpExtractDataFromLocalDB;
+
+// Sync both sides DB.
+@property (strong, nonatomic) UMPLibSyncBothSidesDB *umpSyncBothSidesDB;
 
 + (id)shareApiManager;
 

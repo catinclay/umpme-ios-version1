@@ -10,6 +10,7 @@
 #import <sqlite3.h>
 #import "UMPCsntManager.h"
 
+
 @interface UMPLibLocalDB : NSObject {
     sqlite3 *currDB;
 }
@@ -54,5 +55,24 @@
 // Drop table
 - (BOOL)dropTableOnLocalDB:(NSString *)tableName;
 
+// Create user local cache tables
+- (BOOL)createUserLocalCacheTables;
+
+// Drop user local cache tables
+- (BOOL)dropUserLocalCacheTables;
+
+// Clear auto login table.
+- (BOOL)clearAutoLoginTable;
 
 @end
+
+
+
+
+
+
+
+
+
+
+

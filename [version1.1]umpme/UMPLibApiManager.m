@@ -41,6 +41,15 @@
         
         // Sync to local DB.
         self.umpSyncToLocalDB = [UMPLibSyncToLocalDB shareSyncToLocalDBManager];
+        
+        // Sync to server DB.
+        self.umpSyncToServerDB = [UMPLibSyncToServerDB shareSyncToServerDBManager];
+        
+        // Extract data from local DB.
+        self.umpExtractDataFromLocalDB = [UMPLibExtractDataFromLocalDB shareExtractDataFromLocalDBManager];
+        
+        // Sync both sides DB.
+        self.umpSyncBothSidesDB = [UMPLibSyncBothSidesDB shareSyncBothSidesDBManager];
     }
     return self;
 }

@@ -69,6 +69,56 @@
     }
 }
 
+- (BOOL)syncToLocalDB_updateAutoLoginFlagToAutoLoginTableWithDataDic:(NSDictionary *)dataDic {
+    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
+    
+    NSString *uid = [dataDic objectForKey:@"uid"];
+    NSString *autoLoginSwitchStateString = [dataDic objectForKey:@"allow_autologin"];
+    
+    NSString *updateSQL = [[NSString alloc]
+                           initWithFormat:@"UPDATE autologin SET allow_autologin=%@ WHERE uid=%@",
+                           autoLoginSwitchStateString, uid];
+    BOOL updateBoolFlag = [umpApiManager.umpLocalDB updateDataOnLocalDB:updateSQL];
+    return updateBoolFlag;
+}
+
+- (BOOL)syncToLocalDB_updateAutoLoginAllDataToAutoLoginTableWithDataDic:(NSDictionary *)dataDic {
+    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
+    
+    NSString *uid = [dataDic objectForKey:@"uid"];
+    NSString *ulogin_token = [dataDic objectForKey:@"ulogin_token"];
+    NSString *token_update_date = [dataDic objectForKey:@"token_update_date"];
+    NSString *token_update_time = [dataDic objectForKey:@"token_update_time"];
+    NSString *allow_autologin = [dataDic objectForKey:@"allow_autologin"];
+    NSString *is_sync = [dataDic objectForKey:@"is_sync"];
+    
+    NSString *updateSQL = [[NSString alloc]
+                           initWithFormat:@"UPDATE autologin SET autologin_token='%@', token_update_date='%@', token_update_time='%@', allow_autologin=%@, is_sync=%@ WHERE uid=%@",
+                           ulogin_token,
+                           token_update_date,
+                           token_update_time,
+                           allow_autologin,
+                           is_sync,
+                           uid];
+    
+    return [umpApiManager.umpLocalDB updateDataOnLocalDB:updateSQL];
+}
+
+
 
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
