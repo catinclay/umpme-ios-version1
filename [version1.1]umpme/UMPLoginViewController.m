@@ -71,6 +71,7 @@
     //[self performSegueWithIdentifier:@"segue_loginvc_to_maintbc" sender:self];
     
     UMPBhvManager *umpBhvManager = [UMPBhvManager shareBhvManager];
+    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
     
     [umpBhvManager.umpBhvLogin initStateForLoginErrorLabel:self.loginErrorLabel];
     if ([umpBhvManager.umpBhvLogin
@@ -95,12 +96,29 @@
                     NSString *backUid = [analyzeBackDataDic objectForKey:@"uid"];
                     NSLog(@"[debug][temp][login vc] uid = %@", backUid);
                     
-                } else {
+                    BOOL updateLocalAutoLoginFlagBoolFlag = [umpBhvManager.umpBhvLogin
+                                                             updateLocalAutologinFlagForUid:backUid
+                                                             basedOnSwitch:self.autoLoginSwitch];
                     
+                    BOOL updateServerAutoLoginFlagBoolFlag = [umpBhvManager.umpBhvLogin
+                                                              updateServerAutoLoginFlagForUid:backUid
+                                                              basedOnSwitch:self.autoLoginSwitch];
+                    
+                    BOOL updateBothSidesAutoLoginBoolFlag = [umpApiManager.umpSyncBothSidesDB
+                                                             syncBothSides_Update_AutoLoginForUid:backUid];
+                    
+                    if (updateLocalAutoLoginFlagBoolFlag && updateServerAutoLoginFlagBoolFlag &&
+                        updateBothSidesAutoLoginBoolFlag)
+                        
+                        
+                    
+                    } else {
+                    }
+                    
+                } else {
                 }
                 
             } else {
-                
             }
         }
         

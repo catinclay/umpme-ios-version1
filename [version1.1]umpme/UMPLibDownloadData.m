@@ -61,5 +61,38 @@
     return dataDic;
 }
 
+- (NSDictionary *)downloadLoginSignoutTableDataForUid:(NSString *)uid {
+    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
+    
+    NSString *message = [[NSString alloc] initWithFormat:@"?uid=%@", uid];
+    
+    NSMutableURLRequest *request = [umpApiManager.umpNetwork generateGETRequestForService:@"downloadloginsignouttabledata" withMessage:message];
+    
+    NSDictionary *bacDataDic = [umpApiManager.umpNetwork communicateWithServerWithRequest:request];
+    
+    if (bacDataDic != nil) {
+        NSDictionary *connectionBackData = [bacDataDic objectForKey:@"backData"];
+        if ([[connectionBackData objectForKey:@"succ"] isEqualToString:@"yes"]) {
+            NSString *login_server_id = [connectionBackData objectForKey:@"login_server_id"];
+            NSString *login_date = [connectionBackData objectForKey:@"login_date"];
+            NSString *login_time = [connectionBackData objectForKey:@"login_time"];
+            
+        }
+    }
+}
+
+
+
+
+
+
 
 @end
+
+
+
+
+
+
+
+

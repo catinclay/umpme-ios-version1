@@ -15,5 +15,6 @@
 + (id)shareDownloadDataManager;
 
 - (NSDictionary *)downloadAutoLoginTableDataForUid:(NSString *)uid;
+- (NSDictionary *)downloadLoginSignoutTableDataForUid:(NSString *)uid;
 
 @end
