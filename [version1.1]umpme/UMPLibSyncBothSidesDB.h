@@ -14,7 +14,5 @@
 
 + (id)shareSyncBothSidesDBManager;
 
-//- (BOOL)syncBothSides_Update_AutoLoginForUid:(NSString *)uid;
-
 
 @end
