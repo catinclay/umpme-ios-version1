@@ -10,6 +10,7 @@
 #import "UMPCsntManager.h"
 #import "UMPLibApiManager.h"
 
+
 @interface UMPBhvLogin : NSObject
 
 + (id)shareBhvLoginManager;
@@ -28,5 +29,8 @@
 
 - (BOOL)updateServerAutoLoginFlagForUid:(NSString *)uid basedOnSwitch:(UISwitch *)autoLoginSwitch;
 
+- (BOOL)writeLoginDataIntoLocalLoginTableForUid:(NSString *)uid;
+
+- (BOOL)writeIntMsgDataIntoLocalIntMsgTableForUid:(NSString *)uid;
 
 @end

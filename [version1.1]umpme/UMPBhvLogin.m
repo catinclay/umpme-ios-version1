@@ -187,6 +187,39 @@
             syncToServerDB_updateAutoLoginFlagToAutoLoginTableWithDataDic:inputDataDic];
 }
 
+- (BOOL)writeLoginDataIntoLocalLoginTableForUid:(NSString *)uid {
+    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
+    
+    NSDictionary *downloadDataDic = [umpApiManager.umpDownloadData downloadLoginSignoutTableDataForUid:uid];
+    if (downloadDataDic != nil) {
+        
+        NSString *login_server_id = [downloadDataDic objectForKey:@"login_server_id"];
+        
+        NSMutableDictionary *syncDataMutableDic = [[NSMutableDictionary alloc] init];
+        [syncDataMutableDic setObject:uid forKey:@"uid"];
+        [syncDataMutableDic setObject:login_server_id forKey:@"login_server_id"];
+        
+        return [umpApiManager.umpSyncToLocalDB
+                syncToLocalDB_InsertDataToLoginTableWithDataDic:syncDataMutableDic];
+        
+    }
+    return NO;
+}
+
+- (BOOL)writeIntMsgDataIntoLocalIntMsgTableForUid:(NSString *)uid {
+    
+    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
+    NSArray *intMsgInstanceArray = [umpApiManager.umpDownloadData downloadIntMsgTableUnreadMsgForUid:uid];
+    if (intMsgInstanceArray != nil) {
+        
+        if ([umpApiManager.umpSyncToLocalDB
+             syncToLocalDB_InsertDataToIntMsgReceiveTableForUid:uid
+             withDataArray:intMsgInstanceArray]) return YES;
+        
+    }
+    return NO;
+}
+
 
 
 @end

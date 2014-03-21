@@ -16,5 +16,6 @@
 
 - (NSDictionary *)downloadAutoLoginTableDataForUid:(NSString *)uid;
 - (NSDictionary *)downloadLoginSignoutTableDataForUid:(NSString *)uid;
+- (NSArray *)downloadIntMsgTableUnreadMsgForUid:(NSString *)uid;
 
 @end

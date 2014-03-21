@@ -104,8 +104,55 @@
     return [umpApiManager.umpLocalDB updateDataOnLocalDB:updateSQL];
 }
 
+- (BOOL)syncTolocalDB_InsertDataToLoginTableWithDataDic:(NSDictionary *)dataDic {
+    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
+    
+    NSString *uid = [dataDic objectForKey:@"uid"];
+    NSString *login_server_id = [dataDic objectForKey:@"login_server_id"];
+    
+    NSString *insertSQL = [[NSString alloc]
+                           initWithFormat:@"INSERT INTO login (uid, login_id) VALUES (%@, %@)",
+                           uid, login_server_id];
+    
+    return [umpApiManager.umpLocalDB insertDataOnLocalDB:insertSQL];
+}
 
-
+- (BOOL)syncToLocalDB_InsertDataToIntMsgReceiveTableForUid:(NSString *)uid withDataArray:(NSArray *)dataArray {
+    
+    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
+    
+    if (dataArray != nil) {
+        NSInteger dataNum = [dataArray count];
+        
+        [umpApiManager.umpLocalDB openLocalDB];
+        for (NSInteger i = 0; i < dataNum; i ++) {
+            NSDictionary *dataDic = [dataArray objectAtIndex:i];
+            
+            NSString *intmsg_server_id = [dataDic objectForKey:@"intmsg_server_id"];
+            NSString *to_friend_uid = [dataDic objectForKey:@"to_friend_uid"];
+            NSString *intmsg = [dataDic objectForKey:@"intmsg"];
+            NSString *is_read = [dataDic objectForKey:@"is_read"];
+            NSString *send_date = [dataDic objectForKey:@"send_date"];
+            NSString *send_time = [dataDic objectForKey:@"send_time"];
+            
+            NSString *insertSQL = [[NSString alloc]
+                                   initWithFormat:@"INSERT INTO intmsg_receive (intmsg_server_id, from_friend_uid, intmsg, is_read, friend_send_data, friend_send_time) VALUES (%@, %@, '%@', %@, '%@', '%@')",
+                                   intmsg_server_id,
+                                   to_friend_uid,
+                                   intmsg, is_read,
+                                   send_date,
+                                   send_time];
+            
+            [umpApiManager.umpLocalDB insertDataOnLocalDB:insertSQL];
+            
+        }
+        [umpApiManager.umpLocalDB closeLocalDB];
+        return YES;
+        
+    } else {
+        return NO;
+    }
+}
 
 @end
 

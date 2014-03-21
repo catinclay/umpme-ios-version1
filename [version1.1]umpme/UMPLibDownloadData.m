@@ -70,18 +70,59 @@
     
     NSDictionary *bacDataDic = [umpApiManager.umpNetwork communicateWithServerWithRequest:request];
     
+    NSDictionary *dataDic = nil;
+    
     if (bacDataDic != nil) {
         NSDictionary *connectionBackData = [bacDataDic objectForKey:@"backData"];
         if ([[connectionBackData objectForKey:@"succ"] isEqualToString:@"yes"]) {
             NSString *login_server_id = [connectionBackData objectForKey:@"login_server_id"];
             NSString *login_date = [connectionBackData objectForKey:@"login_date"];
             NSString *login_time = [connectionBackData objectForKey:@"login_time"];
+            NSString *signout_date = [connectionBackData objectForKey:@"signout_date"];
+            NSString *signout_time = [connectionBackData objectForKey:@"signout_time"];
             
+            NSMutableDictionary *dataMutableDic = [[NSMutableDictionary alloc] init];
+            [dataMutableDic setObject:uid forKey:@"uid"];
+            [dataMutableDic setObject:login_server_id forKey:@"login_server_id"];
+            [dataMutableDic setObject:login_date forKey:@"login_date"];
+            [dataMutableDic setObject:login_time forKey:@"login_time"];
+            [dataMutableDic setObject:signout_date forKey:@"signout_date"];
+            [dataMutableDic setObject:signout_time forKey:@"signout_time"];
+            
+            dataDic = [[NSDictionary alloc] initWithDictionary:dataMutableDic];
         }
     }
+    
+    return dataDic;
 }
 
-
+- (NSArray *)downloadIntMsgTableUnreadMsgForUid:(NSString *)uid {
+    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
+    
+    NSString *message = [[NSString alloc] initWithFormat:@"?uid=%@", uid];
+    NSMutableURLRequest *request = [umpApiManager.umpNetwork
+                                    generateGETRequestForService:@"downloadunreadintmsg"
+                                    withMessage:message];
+    NSDictionary *backDataDic = [umpApiManager.umpNetwork communicateWithServerWithRequest:request];
+    if (backDataDic != nil) {
+        NSData *connectionBackDataDic = [backDataDic objectForKey:@"backData"];
+        
+        NSError *jsonError = nil;
+        NSDictionary *jsonDic = [NSJSONSerialization
+                                 JSONObjectWithData:connectionBackDataDic
+                                 options:NSJSONReadingAllowFragments
+                                 error:&jsonError];
+        if (jsonError != nil) {
+            if ([[jsonDic objectForKey:@"succ"] isEqualToString:@"yes"]) {
+                
+                NSArray *unreadIntMsgInstanceArray = [jsonDic objectForKey:@"unread_msg_instance_list"];
+                NSInteger unreadIntMsgInstanceNum = [unreadIntMsgInstanceArray count];
+                if (unreadIntMsgInstanceNum != 0) return unreadIntMsgInstanceArray;
+            }
+        }
+    }
+    return nil;
+}
 
 
 

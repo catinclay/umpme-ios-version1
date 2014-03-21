@@ -96,6 +96,7 @@
                     NSString *backUid = [analyzeBackDataDic objectForKey:@"uid"];
                     NSLog(@"[debug][temp][login vc] uid = %@", backUid);
                     
+                    // Sync auto login flag.
                     BOOL updateLocalAutoLoginFlagBoolFlag = [umpBhvManager.umpBhvLogin
                                                              updateLocalAutologinFlagForUid:backUid
                                                              basedOnSwitch:self.autoLoginSwitch];
@@ -107,14 +108,22 @@
                     BOOL updateBothSidesAutoLoginBoolFlag = [umpApiManager.umpSyncBothSidesDB
                                                              syncBothSides_Update_AutoLoginForUid:backUid];
                     
-                    if (updateLocalAutoLoginFlagBoolFlag && updateServerAutoLoginFlagBoolFlag &&
-                        updateBothSidesAutoLoginBoolFlag)
-                        
-                        
                     
+                    if (updateLocalAutoLoginFlagBoolFlag && updateServerAutoLoginFlagBoolFlag &&
+                        updateBothSidesAutoLoginBoolFlag) {
+                        
+                        // Create local user cache tables.
+                        if ([umpApiManager.umpLocalDB createUserLocalCacheTables]) {
+                            
+                            // Download "login signout data", and write them into local "login" table.
+                            
+                            
+                        }
+                        
+                        
                     } else {
                     }
-                    
+
                 } else {
                 }
                 
