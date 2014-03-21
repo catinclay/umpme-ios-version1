@@ -13,6 +13,7 @@
 
 @interface UMPBhvLogin : NSObject
 
+
 + (id)shareBhvLoginManager;
 
 - (void)initStateForLoginErrorLabel:(UILabel *)loginErrorLabel;
@@ -29,8 +30,10 @@
 
 - (BOOL)updateServerAutoLoginFlagForUid:(NSString *)uid basedOnSwitch:(UISwitch *)autoLoginSwitch;
 
-- (BOOL)writeLoginDataIntoLocalLoginTableForUid:(NSString *)uid;
+//- (BOOL)writeLoginDataIntoLocalLoginTableForUid:(NSString *)uid;
 
 - (BOOL)writeIntMsgDataIntoLocalIntMsgTableForUid:(NSString *)uid;
+
+- (BOOL)connectIntMsgServerForUid:(NSString *)uid;
 
 @end

@@ -120,6 +120,10 @@
                 loginErrorLabel.textColor = umpCsntManager.umpCsntColorManager.umpRedColor;
                 uemailTextField.text = @"";
                 
+                NSString *add_error_message = [jsonDic objectForKey:@"add_message"];
+                NSLog(@"[debug][error][login vc]:add message =  %@", add_error_message);
+                
+                
             } else {
                 loginErrorLabel.text = @"please try again";
                 loginErrorLabel.textColor = umpCsntManager.umpCsntColorManager.umpRedColor;
@@ -186,41 +190,45 @@
     return [umpApiManager.umpSyncToServerDB
             syncToServerDB_updateAutoLoginFlagToAutoLoginTableWithDataDic:inputDataDic];
 }
-
-- (BOOL)writeLoginDataIntoLocalLoginTableForUid:(NSString *)uid {
-    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
-    
-    NSDictionary *downloadDataDic = [umpApiManager.umpDownloadData downloadLoginSignoutTableDataForUid:uid];
-    if (downloadDataDic != nil) {
-        
-        NSString *login_server_id = [downloadDataDic objectForKey:@"login_server_id"];
-        
-        NSMutableDictionary *syncDataMutableDic = [[NSMutableDictionary alloc] init];
-        [syncDataMutableDic setObject:uid forKey:@"uid"];
-        [syncDataMutableDic setObject:login_server_id forKey:@"login_server_id"];
-        
-        return [umpApiManager.umpSyncToLocalDB
-                syncToLocalDB_InsertDataToLoginTableWithDataDic:syncDataMutableDic];
-        
-    }
-    return NO;
-}
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+//- (BOOL)writeLoginDataIntoLocalLoginTableForUid:(NSString *)uid {
+//    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
+//    
+//    NSDictionary *downloadDataDic = [umpApiManager.umpDownloadData downloadLoginSignoutTableDataForUid:uid];
+//    if (downloadDataDic != nil) {
+//        
+//        NSString *login_server_id = [downloadDataDic objectForKey:@"login_server_id"];
+//        
+//        NSMutableDictionary *syncDataMutableDic = [[NSMutableDictionary alloc] init];
+//        [syncDataMutableDic setObject:uid forKey:@"uid"];
+//        [syncDataMutableDic setObject:login_server_id forKey:@"login_server_id"];
+//        
+//        NSDictionary *syncDataDic = [[NSDictionary alloc] initWithDictionary:syncDataMutableDic];
+//        
+//        return [umpApiManager.umpSyncToLocalDB
+//                syncToLocalDB_InsertDataToLoginTableWithDataDic:@{@"uid": uid, @"login_server_id": login_server_id}];
+//    }
+//    return NO;
+//}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)writeIntMsgDataIntoLocalIntMsgTableForUid:(NSString *)uid {
     
     UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
     NSArray *intMsgInstanceArray = [umpApiManager.umpDownloadData downloadIntMsgTableUnreadMsgForUid:uid];
     if (intMsgInstanceArray != nil) {
         
-        if ([umpApiManager.umpSyncToLocalDB
-             syncToLocalDB_InsertDataToIntMsgReceiveTableForUid:uid
-             withDataArray:intMsgInstanceArray]) return YES;
+        [umpApiManager.umpSyncToLocalDB
+         syncToLocalDB_InsertDataToIntMsgReceiveTableForUid:uid
+         withDataArray:intMsgInstanceArray];
         
     }
-    return NO;
+    return YES;
 }
 
-
+- (BOOL)connectIntMsgServerForUid:(NSString *)uid {
+    // Do something.
+    return YES;
+}
 
 @end
 

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UMPBhvManager.h"
+#import "UMPCsntManager.h"
 
 @interface UMPLoginViewController : UIViewController
 

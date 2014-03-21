@@ -78,7 +78,9 @@
     NSString *updateSQL = [[NSString alloc]
                            initWithFormat:@"UPDATE autologin SET allow_autologin=%@ WHERE uid=%@",
                            autoLoginSwitchStateString, uid];
+    [umpApiManager.umpLocalDB openLocalDB];
     BOOL updateBoolFlag = [umpApiManager.umpLocalDB updateDataOnLocalDB:updateSQL];
+    [umpApiManager.umpLocalDB closeLocalDB];
     return updateBoolFlag;
 }
 
@@ -100,22 +102,36 @@
                            allow_autologin,
                            is_sync,
                            uid];
-    
-    return [umpApiManager.umpLocalDB updateDataOnLocalDB:updateSQL];
-}
 
-- (BOOL)syncTolocalDB_InsertDataToLoginTableWithDataDic:(NSDictionary *)dataDic {
-    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
+    if ([umpApiManager.umpLocalDB openLocalDB] &&
+        [umpApiManager.umpLocalDB updateDataOnLocalDB:updateSQL] &&
+        [umpApiManager.umpLocalDB closeLocalDB]) return YES;
     
-    NSString *uid = [dataDic objectForKey:@"uid"];
-    NSString *login_server_id = [dataDic objectForKey:@"login_server_id"];
-    
-    NSString *insertSQL = [[NSString alloc]
-                           initWithFormat:@"INSERT INTO login (uid, login_id) VALUES (%@, %@)",
-                           uid, login_server_id];
-    
-    return [umpApiManager.umpLocalDB insertDataOnLocalDB:insertSQL];
+    return NO;
 }
+/////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)syncTolocalDB_InsertDataToLoginTableWithDataDic:(NSDictionary *)dataDic {
+//    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
+//    
+//    NSLog(@"[debug][error][sync local db][###insert into local login table]##------## hrere 1");
+//    
+//    
+//    NSString *uid = [dataDic objectForKey:@"uid"];
+//    NSString *login_server_id = [dataDic objectForKey:@"login_server_id"];
+//    
+//    NSString *insertSQL = [[NSString alloc]
+//                           initWithFormat:@"INSERT INTO login (uid, login_id) VALUES (%@, %@)",
+//                           uid, login_server_id];
+//    
+//    NSLog(@"[debug][error][sync local db][###insert into local login table]uid = %@, login_id = %@", uid, login_server_id);
+//    
+//    if ([umpApiManager.umpLocalDB openLocalDB] &&
+//        [umpApiManager.umpLocalDB insertDataOnLocalDB:insertSQL] &&
+//        [umpApiManager.umpLocalDB closeLocalDB]) return YES;
+    
+    return NO;
+}
+/////////////////////////////////////////////////////////////////////////////////////////
 
 - (BOOL)syncToLocalDB_InsertDataToIntMsgReceiveTableForUid:(NSString *)uid withDataArray:(NSArray *)dataArray {
     
@@ -123,6 +139,8 @@
     
     if (dataArray != nil) {
         NSInteger dataNum = [dataArray count];
+        
+        // NSLog(@"[debug][error][sync to local db][insert msg to local db] data num = %ld", (long)dataNum);
         
         [umpApiManager.umpLocalDB openLocalDB];
         for (NSInteger i = 0; i < dataNum; i ++) {

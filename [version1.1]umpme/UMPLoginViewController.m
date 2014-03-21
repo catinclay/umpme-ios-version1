@@ -68,10 +68,10 @@
 
 // Temp Action:
 - (IBAction)loginAction:(id)sender {
-    //[self performSegueWithIdentifier:@"segue_loginvc_to_maintbc" sender:self];
     
     UMPBhvManager *umpBhvManager = [UMPBhvManager shareBhvManager];
     UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
+    UMPCsntManager *umpCsntManager = [UMPCsntManager shareCsntManager];
     
     [umpBhvManager.umpBhvLogin initStateForLoginErrorLabel:self.loginErrorLabel];
     if ([umpBhvManager.umpBhvLogin
@@ -94,7 +94,6 @@
                 
                 if (analyzeBackDataDic != nil) {
                     NSString *backUid = [analyzeBackDataDic objectForKey:@"uid"];
-                    NSLog(@"[debug][temp][login vc] uid = %@", backUid);
                     
                     // Sync auto login flag.
                     BOOL updateLocalAutoLoginFlagBoolFlag = [umpBhvManager.umpBhvLogin
@@ -116,23 +115,41 @@
                         if ([umpApiManager.umpLocalDB createUserLocalCacheTables]) {
                             
                             // Download "login signout data", and write them into local "login" table.
-                            
-                            
+                            NSDictionary *downloadLoginSignoutDataDic = [umpApiManager.umpDownloadData
+                                                                         downloadLoginSignoutTableDataForUid:backUid];
+                            if (downloadLoginSignoutDataDic != nil) {
+                                
+                                NSString *uid = [downloadLoginSignoutDataDic objectForKey:@"uid"];
+                                NSString *login_server_id = [downloadLoginSignoutDataDic objectForKey:@"login_server_id"];
+                                
+                                NSString *insertSQL = [[NSString alloc]
+                                                       initWithFormat:@"INSERT INTO login (uid, login_id) VALUES (%@, %@)",
+                                                       uid, login_server_id];
+                                
+                                if ([umpApiManager.umpLocalDB openLocalDB] &&
+                                    [umpApiManager.umpLocalDB insertDataOnLocalDB:insertSQL] &&
+                                    [umpApiManager.umpLocalDB closeLocalDB]) {
+                                    
+                                    if ([umpBhvManager.umpBhvLogin writeIntMsgDataIntoLocalIntMsgTableForUid:backUid]) {
+                                        if ([umpBhvManager.umpBhvLogin connectIntMsgServerForUid:backUid]) {
+                                            
+                                            // Login successfully.
+                                            
+                                            [self performSegueWithIdentifier:umpCsntManager.umpCsntSegueManager.loginToMainTBC
+                                                                      sender:self];
+                                            
+                                            //////////////////////
+                                            
+                                        }
+                                    }
+                                }
+                            }
                         }
-                        
-                        
-                    } else {
                     }
-
-                } else {
                 }
-                
-            } else {
             }
         }
-        
     }
-    
 }
 
 - (IBAction)loginvcToSignupvcAction:(id)sender {

@@ -15,5 +15,7 @@
 + (id)shareExtractDataFromLocalDBManager;
 
 - (NSMutableArray *)extractDataFromAutoLoginWithUid:(NSString *)uid;
+- (NSString *)getCurrUserUid;
+- (NSString *)getCurrLoginServerId;
 
 @end

@@ -60,6 +60,47 @@
 
 // Temp Action:
 - (IBAction)signoutAction:(id)sender {
-    [self performSegueWithIdentifier:@"segue_personalpagevc_to_loginvc" sender:self];
+    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
+    UMPBhvManager *umpBhvManager = [UMPBhvManager shareBhvManager];
+    
+    // Get current user uid.
+    NSString *uid = [umpApiManager.umpExtractDataFromLocalDB getCurrUserUid];
+    NSString *server_login_id = [umpApiManager.umpExtractDataFromLocalDB getCurrLoginServerId];
+    if (uid != nil && server_login_id != nil) {
+        if ([umpBhvManager.umpBhvSignout talkToServerSignoutForUid:uid andServerLoginId:server_login_id]) {
+            if ([umpBhvManager.umpBhvSignout disconnectIntMsgServiceForUid:uid]) {
+                if ([umpBhvManager.umpBhvSignout clearAutoLoginTableForCurrUser]) {
+                    if ([umpBhvManager.umpBhvSignout dropLocalUserCacheTables]) {
+                        // Go back to login vc.
+                        [self performSegueWithIdentifier:@"segue_personalpagevc_to_loginvc" sender:self];
+                    }
+                }
+            }
+        }
+    }
 }
+
+
+
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

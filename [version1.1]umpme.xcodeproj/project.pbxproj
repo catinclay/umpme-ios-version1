@@ -17,6 +17,7 @@
 		3D5283DC18D8D8D900AAFA1F /* UMPCsntManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D5283DB18D8D8D900AAFA1F /* UMPCsntManager.m */; };
 		3D5283E418D8DB9700AAFA1F /* UMPBhvManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D5283E318D8DB9700AAFA1F /* UMPBhvManager.m */; };
 		3D5283EB18D8E0AB00AAFA1F /* UMPCsntSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D5283EA18D8E0AB00AAFA1F /* UMPCsntSegue.m */; };
+		3D5922CF18DCC261004BF35D /* UMPBhvSignout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D5922CE18DCC261004BF35D /* UMPBhvSignout.m */; };
 		3D7CA30918D4BA8500B45472 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D7CA30818D4BA8500B45472 /* Foundation.framework */; };
 		3D7CA30B18D4BA8500B45472 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D7CA30A18D4BA8500B45472 /* CoreGraphics.framework */; };
 		3D7CA30D18D4BA8500B45472 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D7CA30C18D4BA8500B45472 /* UIKit.framework */; };
@@ -77,6 +78,8 @@
 		3D5283E318D8DB9700AAFA1F /* UMPBhvManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMPBhvManager.m; sourceTree = "<group>"; };
 		3D5283E918D8E0AB00AAFA1F /* UMPCsntSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMPCsntSegue.h; sourceTree = "<group>"; };
 		3D5283EA18D8E0AB00AAFA1F /* UMPCsntSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMPCsntSegue.m; sourceTree = "<group>"; };
+		3D5922CD18DCC261004BF35D /* UMPBhvSignout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMPBhvSignout.h; sourceTree = "<group>"; };
+		3D5922CE18DCC261004BF35D /* UMPBhvSignout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMPBhvSignout.m; sourceTree = "<group>"; };
 		3D7CA30518D4BA8500B45472 /* [version1.1]umpme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "[version1.1]umpme.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D7CA30818D4BA8500B45472 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3D7CA30A18D4BA8500B45472 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -277,6 +280,7 @@
 		3D5283DE18D8DAC600AAFA1F /* umpme behavior details */ = {
 			isa = PBXGroup;
 			children = (
+				3D5922CC18DCC24D004BF35D /* signout */,
 				3DCC984118DA0F7300240C34 /* login */,
 				3D4EE0AF18D6BA5500F14269 /* signup */,
 			);
@@ -290,6 +294,15 @@
 				3D5283EA18D8E0AB00AAFA1F /* UMPCsntSegue.m */,
 			);
 			name = segue;
+			sourceTree = "<group>";
+		};
+		3D5922CC18DCC24D004BF35D /* signout */ = {
+			isa = PBXGroup;
+			children = (
+				3D5922CD18DCC261004BF35D /* UMPBhvSignout.h */,
+				3D5922CE18DCC261004BF35D /* UMPBhvSignout.m */,
+			);
+			name = signout;
 			sourceTree = "<group>";
 		};
 		3D7CA2FC18D4BA8500B45472 = {
@@ -582,6 +595,7 @@
 				3DF1917F18D557C200B49BA6 /* UMPLibMD5.m in Sources */,
 				3DDFE8C618DA76DB008659D8 /* UMPLibSyncBothSidesDB.m in Sources */,
 				3D5283CC18D8D5D100AAFA1F /* UMPCsntNetwork.m in Sources */,
+				3D5922CF18DCC261004BF35D /* UMPBhvSignout.m in Sources */,
 				3D7CA31518D4BA8500B45472 /* main.m in Sources */,
 				3D7CA34018D4C5AB00B45472 /* UMPLoginViewController.m in Sources */,
 				3D5283D118D8D6E800AAFA1F /* UMPCsntLocalDB.m in Sources */,

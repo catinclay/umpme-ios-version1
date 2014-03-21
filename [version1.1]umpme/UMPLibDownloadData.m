@@ -68,31 +68,41 @@
     
     NSMutableURLRequest *request = [umpApiManager.umpNetwork generateGETRequestForService:@"downloadloginsignouttabledata" withMessage:message];
     
-    NSDictionary *bacDataDic = [umpApiManager.umpNetwork communicateWithServerWithRequest:request];
+    NSDictionary *backDataDic = [umpApiManager.umpNetwork communicateWithServerWithRequest:request];
     
     NSDictionary *dataDic = nil;
     
-    if (bacDataDic != nil) {
-        NSDictionary *connectionBackData = [bacDataDic objectForKey:@"backData"];
-        if ([[connectionBackData objectForKey:@"succ"] isEqualToString:@"yes"]) {
-            NSString *login_server_id = [connectionBackData objectForKey:@"login_server_id"];
-            NSString *login_date = [connectionBackData objectForKey:@"login_date"];
-            NSString *login_time = [connectionBackData objectForKey:@"login_time"];
-            NSString *signout_date = [connectionBackData objectForKey:@"signout_date"];
-            NSString *signout_time = [connectionBackData objectForKey:@"signout_time"];
+    if (backDataDic != nil) {
+        
+        NSData *connectionBackData = [backDataDic objectForKey:@"backData"];
+        
+        NSError *jsonError = nil;
+        NSDictionary *jsonDic = [NSJSONSerialization
+                                 JSONObjectWithData:connectionBackData
+                                 options:NSJSONReadingAllowFragments error:&jsonError];
+        if (jsonError == nil) {
             
-            NSMutableDictionary *dataMutableDic = [[NSMutableDictionary alloc] init];
-            [dataMutableDic setObject:uid forKey:@"uid"];
-            [dataMutableDic setObject:login_server_id forKey:@"login_server_id"];
-            [dataMutableDic setObject:login_date forKey:@"login_date"];
-            [dataMutableDic setObject:login_time forKey:@"login_time"];
-            [dataMutableDic setObject:signout_date forKey:@"signout_date"];
-            [dataMutableDic setObject:signout_time forKey:@"signout_time"];
-            
-            dataDic = [[NSDictionary alloc] initWithDictionary:dataMutableDic];
+            if ([[jsonDic objectForKey:@"succ"] isEqualToString:@"yes"]) {
+                
+                NSString *login_server_id = [jsonDic objectForKey:@"login_server_id"];
+                
+                NSString *login_date = [jsonDic objectForKey:@"login_date"];
+                NSString *login_time = [jsonDic objectForKey:@"login_time"];
+                NSString *signout_date = [jsonDic objectForKey:@"signout_date"];
+                NSString *signout_time = [jsonDic objectForKey:@"signout_time"];
+                
+                NSMutableDictionary *dataMutableDic = [[NSMutableDictionary alloc] init];
+                [dataMutableDic setObject:uid forKey:@"uid"];
+                [dataMutableDic setObject:login_server_id forKey:@"login_server_id"];
+                [dataMutableDic setObject:login_date forKey:@"login_date"];
+                [dataMutableDic setObject:login_time forKey:@"login_time"];
+                [dataMutableDic setObject:signout_date forKey:@"signout_date"];
+                [dataMutableDic setObject:signout_time forKey:@"signout_time"];
+                
+                dataDic = [[NSDictionary alloc] initWithDictionary:dataMutableDic];
+            }
         }
     }
-    
     return dataDic;
 }
 
