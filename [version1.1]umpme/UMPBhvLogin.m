@@ -145,29 +145,29 @@
 }
 
 
-- (BOOL)updateLocalAutologinFlagForUid:(NSString *)uid basedOnSwitch:(UISwitch *)autoLoginSwitch {
-    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
-    
-    BOOL autoLoginSwitchState = [autoLoginSwitch isOn];
-    
-    NSString *autoLoginSwitchStateString;
-    if (autoLoginSwitchState) {
-        // allow auto login
-        autoLoginSwitchStateString = @"1";
-    } else {
-        // not allow auto login
-        autoLoginSwitchStateString = @"0";
-    }
-    
-    NSMutableDictionary *inputDataMutableDic = [[NSMutableDictionary alloc] init];
-    [inputDataMutableDic setObject:uid forKey:@"uid"];
-    [inputDataMutableDic setObject:autoLoginSwitchStateString forKey:@"allow_autologin"];
-    NSDictionary *inputDataDic = [[NSDictionary alloc] initWithDictionary:inputDataMutableDic];
-    
-    return [umpApiManager.umpSyncToLocalDB
-            syncToLocalDB_updateAutoLoginFlagToAutoLoginTableWithDataDic:inputDataDic];
-    
-}
+//- (BOOL)updateLocalAutologinFlagForUid:(NSString *)uid basedOnSwitch:(UISwitch *)autoLoginSwitch {
+//    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
+//    
+//    BOOL autoLoginSwitchState = [autoLoginSwitch isOn];
+//    
+//    NSString *autoLoginSwitchStateString;
+//    if (autoLoginSwitchState) {
+//        // allow auto login
+//        autoLoginSwitchStateString = @"1";
+//    } else {
+//        // not allow auto login
+//        autoLoginSwitchStateString = @"0";
+//    }
+//    
+//    NSMutableDictionary *inputDataMutableDic = [[NSMutableDictionary alloc] init];
+//    [inputDataMutableDic setObject:uid forKey:@"uid"];
+//    [inputDataMutableDic setObject:autoLoginSwitchStateString forKey:@"allow_autologin"];
+//    NSDictionary *inputDataDic = [[NSDictionary alloc] initWithDictionary:inputDataMutableDic];
+//    
+//    return [umpApiManager.umpSyncToLocalDB
+//            syncToLocalDB_updateAutoLoginFlagToAutoLoginTableWithDataDic:inputDataDic];
+//    
+//}
 
 - (BOOL)updateServerAutoLoginFlagForUid:(NSString *)uid basedOnSwitch:(UISwitch *)autoLoginSwitch {
     UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
@@ -211,6 +211,32 @@
 //    return NO;
 //}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (BOOL)writeAutoLoginInfoIntoLocalDBForUid:(NSString *)uid {
+    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
+    // Download auto login info from server and insert them into local db.
+    NSDictionary *dataDicOfServerAutoLogin = [umpApiManager.umpDownloadData downloadAutoLoginTableDataForUid:uid];
+    if (dataDicOfServerAutoLogin != nil) {
+        
+        NSString *ulogin_token = [dataDicOfServerAutoLogin objectForKey:@"ulogin_token"];
+        NSString *token_update_date = [dataDicOfServerAutoLogin objectForKey:@"token_update_date"];
+        NSString *token_update_time = [dataDicOfServerAutoLogin objectForKey:@"token_update_time"];
+        NSString *allow_autologin = [dataDicOfServerAutoLogin objectForKey:@"allow_autologin"];
+        
+        NSMutableDictionary *insertDataMutableDic = [[NSMutableDictionary alloc] init];
+        [insertDataMutableDic setObject:uid forKey:@"uid"];
+        [insertDataMutableDic setObject:ulogin_token forKey:@"ulogin_token"];
+        [insertDataMutableDic setObject:token_update_date forKey:@"token_update_date"];
+        [insertDataMutableDic setObject:token_update_time forKey:@"token_update_time"];
+        [insertDataMutableDic setObject:allow_autologin forKey:@"allow_autologin"];
+        [insertDataMutableDic setObject:@"1" forKey:@"is_sync"];
+        
+        return [umpApiManager.umpSyncToLocalDB syncToLocalDB_InsertDataToAutoLoginTableWithDataDic:insertDataMutableDic];
+    }
+    return NO;
+}
+
+
 - (BOOL)writeIntMsgDataIntoLocalIntMsgTableForUid:(NSString *)uid {
     
     UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];

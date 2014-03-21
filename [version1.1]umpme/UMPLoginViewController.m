@@ -95,21 +95,22 @@
                 if (analyzeBackDataDic != nil) {
                     NSString *backUid = [analyzeBackDataDic objectForKey:@"uid"];
                     
-                    // Sync auto login flag.
-                    BOOL updateLocalAutoLoginFlagBoolFlag = [umpBhvManager.umpBhvLogin
-                                                             updateLocalAutologinFlagForUid:backUid
-                                                             basedOnSwitch:self.autoLoginSwitch];
+                    // Sync auto login flag on server and local.
+//                    BOOL updateLocalAutoLoginFlagBoolFlag = [umpBhvManager.umpBhvLogin
+//                                                             updateLocalAutologinFlagForUid:backUid
+//                                                             basedOnSwitch:self.autoLoginSwitch];
                     
                     BOOL updateServerAutoLoginFlagBoolFlag = [umpBhvManager.umpBhvLogin
                                                               updateServerAutoLoginFlagForUid:backUid
                                                               basedOnSwitch:self.autoLoginSwitch];
                     
-                    BOOL updateBothSidesAutoLoginBoolFlag = [umpApiManager.umpSyncBothSidesDB
-                                                             syncBothSides_Update_AutoLoginForUid:backUid];
+//                    BOOL updateBothSidesAutoLoginBoolFlag = [umpApiManager.umpSyncBothSidesDB
+//                                                             syncBothSides_Update_AutoLoginForUid:backUid];
+                    
+                    BOOL writeAutoLoginInfoIntoLocalDBBoolFlag = [umpBhvManager.umpBhvLogin writeAutoLoginInfoIntoLocalDBForUid:backUid];
                     
                     
-                    if (updateLocalAutoLoginFlagBoolFlag && updateServerAutoLoginFlagBoolFlag &&
-                        updateBothSidesAutoLoginBoolFlag) {
+                    if (updateServerAutoLoginFlagBoolFlag && writeAutoLoginInfoIntoLocalDBBoolFlag) {
                         
                         // Create local user cache tables.
                         if ([umpApiManager.umpLocalDB createUserLocalCacheTables]) {

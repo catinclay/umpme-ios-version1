@@ -29,14 +29,16 @@
         NSString *token_update_date = [dataDic objectForKey:@"token_update_date"];
         NSString *token_update_time = [dataDic objectForKey:@"token_update_time"];
         NSString *allow_autologin = [dataDic objectForKey:@"allow_autologin"];
+        NSString *is_sync = [dataDic objectForKey:@"is_sync"];
         
         NSString *sqlSentence = [[NSString alloc]
-                                 initWithFormat:@"INSERT INTO autologin (uid, autologin_token, token_update_date, token_update_time, allow_autologin, is_sync) VALUES (%@, '%@', '%@', '%@', %@, 1)",
+                                 initWithFormat:@"INSERT INTO autologin (uid, autologin_token, token_update_date, token_update_time, allow_autologin, is_sync) VALUES (%@, '%@', '%@', '%@', %@, %@)",
                                  uid,
                                  ulogin_token,
                                  token_update_date,
                                  token_update_time,
-                                 allow_autologin];
+                                 allow_autologin,
+                                 is_sync];
         
         if([umpApiManager.umpLocalDB openLocalDB] &&
            [umpApiManager.umpLocalDB insertDataOnLocalDB:sqlSentence] &&
