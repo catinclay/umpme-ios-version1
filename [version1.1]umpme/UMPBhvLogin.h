@@ -25,6 +25,9 @@
 - (NSDictionary *)talkToServerWithDataDic:(NSDictionary *)dataDic;
 
 - (NSDictionary *)analyzeBackDataDic:(NSDictionary *)backDataDic withEmailTextField:(UITextField *)uemailTextField andPasswdTextField:(UITextField *)upasswdTextField withLoginErrorLable:(UILabel *)loginErrorLabel;
+
+- (BOOL)dealWithRecoverFromCrash;
+
 - (BOOL)updateServerAutoLoginFlagForUid:(NSString *)uid basedOnSwitch:(UISwitch *)autoLoginSwitch;
 - (BOOL)writeAutoLoginInfoIntoLocalDBForUid:(NSString *)uid;
 - (BOOL)writeIntMsgDataIntoLocalIntMsgTableForUid:(NSString *)uid;

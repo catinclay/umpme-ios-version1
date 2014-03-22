@@ -95,44 +95,49 @@
                 if (analyzeBackDataDic != nil) {
                     NSString *backUid = [analyzeBackDataDic objectForKey:@"uid"];
                     
-                    BOOL updateServerAutoLoginFlagBoolFlag = [umpBhvManager.umpBhvLogin
-                                                              updateServerAutoLoginFlagForUid:backUid
-                                                              basedOnSwitch:self.autoLoginSwitch];
                     
-                    BOOL writeAutoLoginInfoIntoLocalDBBoolFlag = [umpBhvManager.umpBhvLogin writeAutoLoginInfoIntoLocalDBForUid:backUid];
-                    
-                    
-                    if (updateServerAutoLoginFlagBoolFlag && writeAutoLoginInfoIntoLocalDBBoolFlag) {
+                    // Deal with the case which recover from crash.
+                    if ([umpBhvManager.umpBhvLogin dealWithRecoverFromCrash]) {
                         
-                        // Create local user cache tables.
-                        if ([umpApiManager.umpLocalDB createUserLocalCacheTables]) {
+                        BOOL updateServerAutoLoginFlagBoolFlag = [umpBhvManager.umpBhvLogin
+                                                                  updateServerAutoLoginFlagForUid:backUid
+                                                                  basedOnSwitch:self.autoLoginSwitch];
+                        
+                        BOOL writeAutoLoginInfoIntoLocalDBBoolFlag = [umpBhvManager.umpBhvLogin writeAutoLoginInfoIntoLocalDBForUid:backUid];
+                        
+                        
+                        if (updateServerAutoLoginFlagBoolFlag && writeAutoLoginInfoIntoLocalDBBoolFlag) {
                             
-                            // Download "login signout data", and write them into local "login" table.
-                            NSDictionary *downloadLoginSignoutDataDic = [umpApiManager.umpDownloadData
-                                                                         downloadLoginSignoutTableDataForUid:backUid];
-                            if (downloadLoginSignoutDataDic != nil) {
+                            // Create local user cache tables.
+                            if ([umpApiManager.umpLocalDB createUserLocalCacheTables]) {
                                 
-                                NSString *uid = [downloadLoginSignoutDataDic objectForKey:@"uid"];
-                                NSString *login_server_id = [downloadLoginSignoutDataDic objectForKey:@"login_server_id"];
-                                
-                                NSString *insertSQL = [[NSString alloc]
-                                                       initWithFormat:@"INSERT INTO login (uid, login_id) VALUES (%@, %@)",
-                                                       uid, login_server_id];
-                                
-                                if ([umpApiManager.umpLocalDB openLocalDB] &&
-                                    [umpApiManager.umpLocalDB insertDataOnLocalDB:insertSQL] &&
-                                    [umpApiManager.umpLocalDB closeLocalDB]) {
+                                // Download "login signout data", and write them into local "login" table.
+                                NSDictionary *downloadLoginSignoutDataDic = [umpApiManager.umpDownloadData
+                                                                             downloadLoginSignoutTableDataForUid:backUid];
+                                if (downloadLoginSignoutDataDic != nil) {
                                     
-                                    if ([umpBhvManager.umpBhvLogin writeIntMsgDataIntoLocalIntMsgTableForUid:backUid]) {
-                                        if ([umpBhvManager.umpBhvLogin connectIntMsgServerForUid:backUid]) {
-                                            
-                                            // Login successfully.
-                                            
-                                            [self performSegueWithIdentifier:umpCsntManager.umpCsntSegueManager.loginToMainTBC
-                                                                      sender:self];
-                                            
-                                            //////////////////////
-                                            
+                                    NSString *uid = [downloadLoginSignoutDataDic objectForKey:@"uid"];
+                                    NSString *login_server_id = [downloadLoginSignoutDataDic objectForKey:@"login_server_id"];
+                                    
+                                    NSString *insertSQL = [[NSString alloc]
+                                                           initWithFormat:@"INSERT INTO login (uid, login_id) VALUES (%@, %@)",
+                                                           uid, login_server_id];
+                                    
+                                    if ([umpApiManager.umpLocalDB openLocalDB] &&
+                                        [umpApiManager.umpLocalDB insertDataOnLocalDB:insertSQL] &&
+                                        [umpApiManager.umpLocalDB closeLocalDB]) {
+                                        
+                                        if ([umpBhvManager.umpBhvLogin writeIntMsgDataIntoLocalIntMsgTableForUid:backUid]) {
+                                            if ([umpBhvManager.umpBhvLogin connectIntMsgServerForUid:backUid]) {
+                                                
+                                                // Login successfully.
+                                                
+                                                [self performSegueWithIdentifier:umpCsntManager.umpCsntSegueManager.loginToMainTBC
+                                                                          sender:self];
+                                                
+                                                //////////////////////
+                                                
+                                            }
                                         }
                                     }
                                 }

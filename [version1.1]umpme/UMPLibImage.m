@@ -127,6 +127,7 @@
             } else {
                 if ([[jsonDic objectForKey:@"succ"] isEqualToString:@"no"]) {
                     if (UMPME_DEBUG) NSLog(@"[debug][error][image][upload image]succ is no.");
+                    if (UMPME_DEBUG) NSLog(@"[debug][error][image][upload image]error = %@", [jsonDic objectForKey:@"error"]);
                     return NO;
                 } else {
                     return YES;

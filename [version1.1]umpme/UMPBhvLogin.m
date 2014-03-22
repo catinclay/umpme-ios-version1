@@ -145,6 +145,26 @@
 }
 
 
+- (BOOL)dealWithRecoverFromCrash {
+    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
+    // Check is there some records in autologin, if yes, that means the app recover from crash.
+    NSMutableArray *autoLoginInfoArray = [umpApiManager.umpExtractDataFromLocalDB extractDataFromAutoLogin];
+    if (autoLoginInfoArray != nil) {
+        // Clear autologin table on local db.
+        // Drop the user cache table on local db.
+        if ([umpApiManager.umpLocalDB openLocalDB] &&
+            [umpApiManager.umpLocalDB clearAutoLoginTable] &&
+            [umpApiManager.umpLocalDB dropUserLocalCacheTables] &&
+            [umpApiManager.umpLocalDB closeLocalDB]) {
+            
+            return YES;
+        } else {
+            return NO;
+        }
+    }
+    return YES;
+}
+
 - (BOOL)updateServerAutoLoginFlagForUid:(NSString *)uid basedOnSwitch:(UISwitch *)autoLoginSwitch {
     UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
     

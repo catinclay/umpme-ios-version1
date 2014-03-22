@@ -156,12 +156,12 @@
         NSString *response_message_error_code = [[NSString alloc]
                                                  initWithFormat:@"%@",
                                                  [jsonDic objectForKey:@"error_code"]];
-        /*
-         // This message is for debug.
-         NSString *response_message_add_message = [[NSString alloc]
-         initWithFormat:@"%@",
-         [jsonDic objectForKey:@"add_message"]];
-         */
+        
+        // This message is for debug.
+        NSString *response_message_add_message = [[NSString alloc]
+        initWithFormat:@"%@", [jsonDic objectForKey:@"add_message"]];
+        if (UMPME_DEBUG) NSLog(@"[debug][error][sign up bhv][analyze back data]add error msg = %@", response_message_add_message);
+         
         
         NSString *response_message_uid = [[NSString alloc]
                                           initWithFormat:@"%@", [jsonDic objectForKey:@"uid"]];

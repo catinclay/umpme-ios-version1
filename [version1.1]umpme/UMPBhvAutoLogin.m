@@ -29,8 +29,8 @@
     if ([autoLoginInfoArray count] == 0) {
         return nil;
     } else {
-        NSInteger allow_autologin = (long)[autoLoginInfoArray objectAtIndex:4];
-        if (allow_autologin == 0) {
+        NSString *allow_autologin = [autoLoginInfoArray objectAtIndex:4];
+        if ([allow_autologin isEqualToString:@"0"]) {
             return nil;
         } else {
             NSString *uid = [autoLoginInfoArray objectAtIndex:0];
