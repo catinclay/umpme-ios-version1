@@ -36,9 +36,6 @@
             NSString *uid = [autoLoginInfoArray objectAtIndex:0];
             NSString *login_token = [autoLoginInfoArray objectAtIndex:1];
             
-            if (UMPME_DEBUG) NSLog(@"[debug][error][auto login bhv][check local autologin flag]uid = %@, and token = %@",
-                                   [autoLoginInfoArray objectAtIndex:0], login_token);
-            
             NSMutableDictionary *dataMutableDic = [[NSMutableDictionary alloc] init];
             [dataMutableDic setObject:uid forKey:@"uid"];
             [dataMutableDic setObject:login_token forKey:@"login_token"];

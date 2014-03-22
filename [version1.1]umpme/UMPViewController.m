@@ -48,21 +48,14 @@
     BOOL is_autologin_succ = NO;
     UMPBhvManager *umpBhvManager = [UMPBhvManager shareBhvManager];
     NSDictionary *checkBackDic = [umpBhvManager.umpBhvAutoLogin checkLocalAutoLoginFlag];
-    NSLog(@"[debug][error][auto login vc][auto login action]here 0");
     if (checkBackDic != nil) {
-        NSLog(@"[debug][error][auto login vc][auto login action]here 1");
         NSDictionary *talkToServerBackDic = [umpBhvManager.umpBhvAutoLogin talkToServerToLoginWithDataDic:checkBackDic];
         if (talkToServerBackDic != nil) {
-            NSLog(@"[debug][error][auto login vc][auto login action]here 2");
             NSString *uid = [talkToServerBackDic objectForKey:@"uid"];
-            NSLog(@"[debug][error][auto login vc][auto login action]here 3");
             if ([umpBhvManager.umpBhvAutoLogin updateLocalLoginTableWithDataDic:talkToServerBackDic]) {
-                NSLog(@"[debug][error][auto login vc][auto login action]here 4");
                 if ([umpBhvManager.umpBhvAutoLogin
                      downloadAndWriteUnreadIntMsgToLocalDBForUid:uid]) {
-                    NSLog(@"[debug][error][auto login vc][auto login action]here 5");
                     if ([umpBhvManager.umpBhvAutoLogin connectIntMsgServiceForUid:uid]) {
-                        NSLog(@"[debug][error][auto login vc][auto login action]here 5");
                         // Auto login successfully.
                         is_autologin_succ = YES;
                         // Go to main tbc.
