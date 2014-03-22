@@ -112,7 +112,7 @@
     return NO;
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)syncTolocalDB_InsertDataToLoginTableWithDataDic:(NSDictionary *)dataDic {
+//- (BOOL)syncTolocalDB_InsertDataToLoginTableWithDataDic:(NSDictionary *)dataDic {
 //    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
 //    
 //    NSLog(@"[debug][error][sync local db][###insert into local login table]##------## hrere 1");
@@ -130,9 +130,9 @@
 //    if ([umpApiManager.umpLocalDB openLocalDB] &&
 //        [umpApiManager.umpLocalDB insertDataOnLocalDB:insertSQL] &&
 //        [umpApiManager.umpLocalDB closeLocalDB]) return YES;
-    
-    return NO;
-}
+//    
+//    return NO;
+//}
 /////////////////////////////////////////////////////////////////////////////////////////
 
 - (BOOL)syncToLocalDB_InsertDataToIntMsgReceiveTableForUid:(NSString *)uid withDataArray:(NSArray *)dataArray {

@@ -36,36 +36,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bBI-na-Ycc">
-                                <rect key="frame" x="68" y="188" width="160" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Temp: AutoLoginAction">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="AutoLoginAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="qSG-Zz-GGb"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ijj-YP-cF7">
-                                <rect key="frame" x="68" y="226" width="193" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Temp: AutoLogin Fail Action">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="autoLoginFailAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="kbn-fV-ig8"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xbt-cq-Eet">
-                                <rect key="frame" x="33" y="291" width="262" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Temp: Create AutoLogin DB and Table">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="createAutoLoginDBAndTable:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="OPq-CA-N8n"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -81,7 +51,7 @@
         <!--LoginVC-->
         <scene sceneID="kyZ-dh-llv">
             <objects>
-                <viewController id="U6Q-1v-qp5" userLabel="LoginVC" customClass="UMPLoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="umploginvc" id="U6Q-1v-qp5" userLabel="LoginVC" customClass="UMPLoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NYF-nd-zNh"/>
                         <viewControllerLayoutGuide type="bottom" id="sDT-LB-P1Q"/>
@@ -317,7 +287,7 @@
                     </navigationBar>
                     <connections>
                         <segue destination="Ja7-Qx-440" kind="relationship" relationship="rootViewController" id="fS9-Op-YSv"/>
-                        <segue destination="lHq-hK-zDh" kind="push" id="dh8-VX-XxO"/>
+                        <segue destination="lHq-hK-zDh" kind="push" identifier="segue_contactlistnc_to_frienddetailnc" id="dh8-VX-XxO"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z1P-FP-W9S" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -675,7 +645,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="OKk-2h-ThX"/>
+        <segue reference="eMe-uA-WdD"/>
         <segue reference="4kk-1d-s0M"/>
     </inferredMetricsTieBreakers>
 </document>

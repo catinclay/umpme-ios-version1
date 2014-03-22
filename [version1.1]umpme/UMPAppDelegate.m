@@ -13,6 +13,18 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
+    
+    [umpApiManager.umpLocalDB createLocalDB];
+    [umpApiManager.umpLocalDB openLocalDB];
+    
+    // Table: autologin
+    NSString *createAutoLoginTableSQL = @"CREATE TABLE IF NOT EXISTS autologin (uid INTEGER PRIMARY KEY, autologin_token TEXT, token_update_date TEXT, token_update_time TEXT, allow_autologin INTEGER, is_sync INTEGER)";
+    
+    [umpApiManager.umpLocalDB createTableOnLocalDB:createAutoLoginTableSQL];
+    [umpApiManager.umpLocalDB closeLocalDB];
+    
     return YES;
 }
 							

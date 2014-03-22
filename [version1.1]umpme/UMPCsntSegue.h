@@ -17,6 +17,7 @@
 @property (strong, nonatomic) NSString *loginToSignup;
 @property (strong, nonatomic) NSString *loginToMainTBC;
 @property (strong, nonatomic) NSString *personalPageToLogin;
+@property (strong, nonatomic) NSString *contactlistToFriendDetailNC;
 
 + (id)shareCsntSegueManager;
 

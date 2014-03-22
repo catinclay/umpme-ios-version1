@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UMPLibApiManager.h"
 
 @interface UMPAppDelegate : UIResponder <UIApplicationDelegate>
 

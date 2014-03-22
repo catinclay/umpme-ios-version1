@@ -8,16 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "UMPBhvManager.h"
+#import "UMPLoginViewController.h"
 
 @interface UMPViewController : UIViewController
 
-
-
-
-// Temp:
-
-- (IBAction)AutoLoginAction:(id)sender;
-- (IBAction)autoLoginFailAction:(id)sender;
-
-- (IBAction)createAutoLoginDBAndTable:(id)sender;
 @end

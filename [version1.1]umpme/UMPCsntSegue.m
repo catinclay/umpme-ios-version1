@@ -28,6 +28,7 @@
         self.loginToSignup = @"segue_loginvc_to_signupvc";
         self.loginToMainTBC = @"segue_loginvc_to_maintbc";
         self.personalPageToLogin = @"segue_personalpagevc_to_loginvc";
+        self.contactlistToFriendDetailNC = @"segue_contactlistnc_to_frienddetailnc";
     }
     return self;
 }
