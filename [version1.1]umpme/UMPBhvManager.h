@@ -10,6 +10,7 @@
 #import "UMPBhvSignup.h"
 #import "UMPBhvLogin.h"
 #import "UMPBhvSignout.h"
+#import "UMPBhvAutoLogin.h"
 
 @interface UMPBhvManager : NSObject
 
@@ -19,6 +20,9 @@
 @property (strong, nonatomic) UMPBhvLogin *umpBhvLogin;
 // Signout
 @property (strong, nonatomic) UMPBhvSignout *umpBhvSignout;
+// Autologin
+@property (strong, nonatomic) UMPBhvAutoLogin *umpBhvAutoLogin;
+
 
 + (id)shareBhvManager;
 

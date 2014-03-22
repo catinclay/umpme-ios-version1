@@ -20,12 +20,10 @@
     return umpExtractDataFromLocalDB;
 }
 
-- (NSMutableArray *)extractDataFromAutoLoginWithUid:(NSString *)uid {
+- (NSMutableArray *)extractDataFromAutoLogin{
     UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
     
-    NSString *querySQL = [[NSString alloc] initWithFormat:@"SELECT * FROM autologin WHERE uid = %@", uid];
-    
-    
+    NSString *querySQL = [[NSString alloc] initWithFormat:@"SELECT * FROM autologin"];
     
     [umpApiManager.umpLocalDB openLocalDB];
     NSMutableArray *backDataArray = [umpApiManager.umpLocalDB querySingleRowDataOnLocalDB:querySQL];

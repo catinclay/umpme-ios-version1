@@ -27,6 +27,8 @@
         self.umpBhvLogin = [UMPBhvLogin shareBhvLoginManager];
         // Signout
         self.umpBhvSignout = [UMPBhvSignout shareBhvSignoutManager];
+        // AutoLogin
+        self.umpBhvAutoLogin = [UMPBhvAutoLogin shareBhvAutoLoginManager];
     }
     return self;
 }
