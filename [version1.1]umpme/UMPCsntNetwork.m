@@ -25,6 +25,7 @@
         self.umpServerWeirdString = @"iosisrealgoodsystemforumpme";
         self.umpDeviceCategory = @"mobile";
         self.umpDevice = @"ios";
+        self.umpPostContentType = @"application/json";
     }
     return self;
 }

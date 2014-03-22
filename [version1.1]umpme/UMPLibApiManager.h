@@ -17,6 +17,7 @@
 #import "UMPLibSyncToServerDB.h"
 #import "UMPLibExtractDataFromLocalDB.h"
 #import "UMPLibSyncBothSidesDB.h"
+#import "UMPLibImage.h"
 
 
 @interface UMPLibApiManager : NSObject
@@ -50,6 +51,9 @@
 
 // Sync both sides DB.
 @property (strong, nonatomic) UMPLibSyncBothSidesDB *umpSyncBothSidesDB;
+
+// Image.
+@property (strong, nonatomic) UMPLibImage *umpImage;
 
 + (id)shareApiManager;
 

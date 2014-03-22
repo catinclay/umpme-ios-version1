@@ -25,9 +25,9 @@
 
 - (NSMutableURLRequest *)generatePOSTRequestForService:(NSString *)service withContentType:(NSString *)contentType withPostBody:(NSData *)postBody;
 
-- (BOOL)uploadProfileImageForUid:(NSInteger *)uid withProfileImage:(UIImage *)profileImage;
+//- (BOOL)uploadProfileImageForUid:(NSInteger *)uid withProfileImage:(UIImage *)profileImage;
 
-- (UIImage *)downloadProfileImageForUid:(NSInteger *)uid withSizeCategory:(NSString *)sizeCategory;
+//- (UIImage *)downloadProfileImageForUid:(NSInteger *)uid withSizeCategory:(NSString *)sizeCategory;
 
 - (NSDictionary *)communicateWithServerWithRequest:(NSMutableURLRequest *)request;
 

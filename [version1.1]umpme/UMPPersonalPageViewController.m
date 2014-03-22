@@ -82,6 +82,62 @@
 
 
 
+- (IBAction)clearImagesAction:(id)sender {
+    
+    self.bigImageView.image = nil;
+    self.smallImageView.image = nil;
+}
+
+- (IBAction)uploadImageAction:(id)sender {
+    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
+    
+    NSString *uid = @"44";
+    
+    BOOL uploadBothSizeImagesBoolFlag = [umpApiManager.umpImage
+                                         uploadImagesOfBothSizeWithSourceImage:self.mainImageView.image
+                                         withBigImageCompressionQualityDic:0.5f
+                                         withSmallImageCompressionQuality:0.1f
+                                         forUid:uid
+                                         withService:@"uploadprofileimage"];
+    if (uploadBothSizeImagesBoolFlag) NSLog(@"upload successfully.");
+    else NSLog(@"upload unsuccessully.");
+    
+}
+
+- (IBAction)downloadBothAction:(id)sender {
+    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
+    
+    NSString *uid = @"44";
+    
+    NSDictionary *imagesDic = [umpApiManager.umpImage downloadImageOfBothSizeForUid:uid withService:@"downloadbothsizeprofileimages"];
+    if (imagesDic == nil) {
+        NSLog(@"[debug][error][personal page vc]download nothing...");
+    } else {
+        NSData *bigImageData = [imagesDic objectForKey:@"ubigimagedata"];
+        NSData *smallImageData = [imagesDic objectForKey:@"usmallimagedata"];
+        self.bigImageView.image = [[UIImage alloc] initWithData:bigImageData];
+        self.smallImageView.image = [[UIImage alloc] initWithData:smallImageData];
+    }
+    
+}
+
+- (IBAction)downloadBigAction:(id)sender {
+    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
+    
+    NSString *uid = @"44";
+    
+    self.bigImageView.image = [umpApiManager.umpImage downloadSingleImageForUid:uid withService:@"downloadbigprofileimage"];
+    
+}
+
+- (IBAction)downloadSmallAction:(id)sender {
+    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
+    
+    NSString *uid = @"44";
+    
+    self.smallImageView.image = [umpApiManager.umpImage downloadSingleImageForUid:uid withService:@"downloadsmallprofileimage"];
+    
+}
 @end
 
 

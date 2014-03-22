@@ -50,6 +50,9 @@
         
         // Sync both sides DB.
         self.umpSyncBothSidesDB = [UMPLibSyncBothSidesDB shareSyncBothSidesDBManager];
+        
+        // Image.
+        self.umpImage = [UMPLibImage shareImageManager];
     }
     return self;
 }

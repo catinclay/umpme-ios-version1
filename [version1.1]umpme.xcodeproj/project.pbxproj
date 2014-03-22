@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		3D0D990818D4E10A00769C07 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0D990618D4E10A00769C07 /* libsqlite3.0.dylib */; };
 		3D0D990918D4E10A00769C07 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0D990718D4E10A00769C07 /* libsqlite3.dylib */; };
+		3D11DC1818DDF4AA00F4F062 /* UMPCsntImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D11DC1718DDF4AA00F4F062 /* UMPCsntImage.m */; };
+		3D11DC1C18DE074900F4F062 /* cat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3D11DC1B18DE074900F4F062 /* cat.jpg */; };
+		3D2EFA5A18DD49A300F0FB43 /* UMPLibImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2EFA5918DD49A300F0FB43 /* UMPLibImage.m */; };
 		3D4EE0A818D6B57B00F14269 /* UMPLibDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4EE0A718D6B57B00F14269 /* UMPLibDateTime.m */; };
 		3D5283CC18D8D5D100AAFA1F /* UMPCsntNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D5283CB18D8D5D100AAFA1F /* UMPCsntNetwork.m */; };
 		3D5283D118D8D6E800AAFA1F /* UMPCsntLocalDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D5283D018D8D6E800AAFA1F /* UMPCsntLocalDB.m */; };
@@ -63,6 +66,11 @@
 /* Begin PBXFileReference section */
 		3D0D990618D4E10A00769C07 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		3D0D990718D4E10A00769C07 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		3D11DC1618DDF4AA00F4F062 /* UMPCsntImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMPCsntImage.h; sourceTree = "<group>"; };
+		3D11DC1718DDF4AA00F4F062 /* UMPCsntImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMPCsntImage.m; sourceTree = "<group>"; };
+		3D11DC1B18DE074900F4F062 /* cat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cat.jpg; sourceTree = "<group>"; };
+		3D2EFA5818DD49A300F0FB43 /* UMPLibImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMPLibImage.h; sourceTree = "<group>"; };
+		3D2EFA5918DD49A300F0FB43 /* UMPLibImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMPLibImage.m; sourceTree = "<group>"; };
 		3D4EE0A618D6B57B00F14269 /* UMPLibDateTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMPLibDateTime.h; sourceTree = "<group>"; };
 		3D4EE0A718D6B57B00F14269 /* UMPLibDateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMPLibDateTime.m; sourceTree = "<group>"; };
 		3D5283CA18D8D5D100AAFA1F /* UMPCsntNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMPCsntNetwork.h; sourceTree = "<group>"; };
@@ -160,6 +168,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D11DC1518DDF49200F4F062 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				3D11DC1618DDF4AA00F4F062 /* UMPCsntImage.h */,
+				3D11DC1718DDF4AA00F4F062 /* UMPCsntImage.m */,
+			);
+			name = image;
+			sourceTree = "<group>";
+		};
+		3D11DC1918DE06D100F4F062 /* umpme static */ = {
+			isa = PBXGroup;
+			children = (
+				3D11DC1A18DE06E600F4F062 /* umpme images */,
+			);
+			name = "umpme static";
+			sourceTree = "<group>";
+		};
+		3D11DC1A18DE06E600F4F062 /* umpme images */ = {
+			isa = PBXGroup;
+			children = (
+				3D11DC1B18DE074900F4F062 /* cat.jpg */,
+			);
+			name = "umpme images";
+			sourceTree = "<group>";
+		};
 		3D4EE0A918D6B9CD00F14269 /* umpme lib api details */ = {
 			isa = PBXGroup;
 			children = (
@@ -271,6 +304,7 @@
 		3D5283DD18D8DA8C00AAFA1F /* umpme constant details */ = {
 			isa = PBXGroup;
 			children = (
+				3D11DC1518DDF49200F4F062 /* image */,
 				3D5283E518D8E06E00AAFA1F /* segue */,
 				3D5283D618D8D82200AAFA1F /* color */,
 				3D5283D218D8D78400AAFA1F /* datetime */,
@@ -356,6 +390,7 @@
 				3D7CA31718D4BA8500B45472 /* UMPAppDelegate.h */,
 				3D7CA31818D4BA8500B45472 /* UMPAppDelegate.m */,
 				3D7CA31A18D4BA8500B45472 /* Main.storyboard */,
+				3D11DC1918DE06D100F4F062 /* umpme static */,
 				3DF1918318D55B3800B49BA6 /* umpme constant */,
 				3D7CA34718D4CD3D00B45472 /* umpme lib api */,
 				3DF1917918D5532900B49BA6 /* umpme behavior */,
@@ -423,6 +458,8 @@
 		3DA6C72018D97FC700966BDF /* image */ = {
 			isa = PBXGroup;
 			children = (
+				3D2EFA5818DD49A300F0FB43 /* UMPLibImage.h */,
+				3D2EFA5918DD49A300F0FB43 /* UMPLibImage.m */,
 			);
 			name = image;
 			sourceTree = "<group>";
@@ -581,6 +618,7 @@
 				3D7CA32118D4BA8500B45472 /* Images.xcassets in Resources */,
 				3D7CA31318D4BA8500B45472 /* InfoPlist.strings in Resources */,
 				3D7CA31C18D4BA8500B45472 /* Main.storyboard in Resources */,
+				3D11DC1C18DE074900F4F062 /* cat.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -607,6 +645,7 @@
 				3DDFE8BF18DA708A008659D8 /* UMPLibSyncToServerDB.m in Sources */,
 				3DF1917F18D557C200B49BA6 /* UMPLibMD5.m in Sources */,
 				3DDFE8C618DA76DB008659D8 /* UMPLibSyncBothSidesDB.m in Sources */,
+				3D11DC1818DDF4AA00F4F062 /* UMPCsntImage.m in Sources */,
 				3D5922D318DCD44F004BF35D /* UMPBhvAutoLogin.m in Sources */,
 				3D5283CC18D8D5D100AAFA1F /* UMPCsntNetwork.m in Sources */,
 				3D5922CF18DCC261004BF35D /* UMPBhvSignout.m in Sources */,
@@ -626,6 +665,7 @@
 				3DDFE8BC18DA411F008659D8 /* UMPLibExtractDataFromLocalDB.m in Sources */,
 				3D7CA31918D4BA8500B45472 /* UMPAppDelegate.m in Sources */,
 				3DF1917C18D553AE00B49BA6 /* UMPBhvSignup.m in Sources */,
+				3D2EFA5A18DD49A300F0FB43 /* UMPLibImage.m in Sources */,
 				3D5283D518D8D79700AAFA1F /* UMPCsntDateTime.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

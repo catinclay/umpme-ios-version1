@@ -12,6 +12,7 @@
 #import "UMPCsntDateTime.h"
 #import "UMPCsntColor.h"
 #import "UMPCsntSegue.h"
+#import "UMPCsntImage.h"
 
 @interface UMPCsntManager : NSObject
 
@@ -20,6 +21,7 @@
 @property (strong, nonatomic) UMPCsntDateTime *umpCsntDateTimeManager;
 @property (strong, nonatomic) UMPCsntColor *umpCsntColorManager;
 @property (strong, nonatomic) UMPCsntSegue *umpCsntSegueManager;
+@property (strong, nonatomic) UMPCsntImage *umpCsntImageManager;
 
 
 + (id)shareCsntManager;

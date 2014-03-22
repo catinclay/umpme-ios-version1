@@ -50,7 +50,7 @@
     return request;
 }
 
-- (NSMutableURLRequest *)generatePOSTRequestForService:(NSString *)service withContentType:(NSString *)contentType withPostBody:(NSData *)postBody {
+- (NSMutableURLRequest *)generatePOSTRequestForService:(NSString *)service withContentType:(NSString *)umpContentType withPostBody:(NSData *)postBody {
     
     NSString *wholeURLString = [[NSString alloc]
                                 initWithFormat:@"%@/%@/%@/%@/post/%@/",
@@ -64,104 +64,104 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     [request setHTTPMethod:@"POST"];
     [request setTimeoutInterval:TIMEOUT_POST];
-    [request setValue:contentType forKey:@"Content-Type"];
+    [request setValue:umpContentType forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:postBody];
     
     return request;
     
 }
 
-- (BOOL)uploadProfileImageForUid:(NSInteger *)uid withProfileImage:(UIImage *)profileImage {
-    
-    NSString *uidString = [[NSString alloc] initWithFormat:@"%ld", (long)uid];
-    
-    NSData *profileImagePNGRepresentation = UIImagePNGRepresentation(profileImage);
-    NSString *profileImageBase64String = [profileImagePNGRepresentation
-                                          base64EncodedStringWithOptions:
-                                          NSDataBase64Encoding64CharacterLineLength];
-    
-    NSMutableDictionary *profileImageDic = [[NSMutableDictionary alloc] init];
-    [profileImageDic setObject:uidString forKey:@"uid"];
-    [profileImageDic setObject:profileImageBase64String forKey:@"profileImage"];
-    
-    NSError *encodingJsonError = nil;
-    NSData *profileImageDicJson = [NSJSONSerialization
-                                   dataWithJSONObject:profileImageDic
-                                   options:NSJSONWritingPrettyPrinted error:&encodingJsonError];
-    
-    if (encodingJsonError == nil) {
-        __block BOOL uploadSuccessful = NO;
-        NSMutableURLRequest *request = [self
-                                        generatePOSTRequestForService:@"uploadprofileimage"
-                                        withContentType:@"application/json"
-                                        withPostBody:profileImageDicJson];
-        
-        NSOperationQueue *connectionQueue = [[NSOperationQueue alloc] init];
-        [NSURLConnection sendAsynchronousRequest:request queue:connectionQueue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-            
-            if ([data length] > 0 && connectionError == nil) {
-                
-                uploadSuccessful = YES;
-                
-            } else if ([data length] == 0) {
-                if (DEBUG) NSLog(@"[Debug][Error][UMPAPI][Network][uploadProfileImage]No data comes back from server.");
-                uploadSuccessful = NO;
-                
-            } else {
-                if (DEBUG) NSLog(@"[Debug][Error][UMPAPI][Network][uploadProfileImage]Error during connecting network.");
-                uploadSuccessful = NO;
-            }
-            
-        }];
-        
-        return uploadSuccessful;
-        
-    } else {
-        if (DEBUG) NSLog(@"[Debug][Error]Fail to encode profile image dic into json.");
-        return NO;
-    }
-    
-}
+//- (BOOL)uploadProfileImageForUid:(NSInteger *)uid withProfileImage:(UIImage *)profileImage {
+//    
+//    NSString *uidString = [[NSString alloc] initWithFormat:@"%ld", (long)uid];
+//    
+//    NSData *profileImagePNGRepresentation = UIImagePNGRepresentation(profileImage);
+//    NSString *profileImageBase64String = [profileImagePNGRepresentation
+//                                          base64EncodedStringWithOptions:
+//                                          NSDataBase64Encoding64CharacterLineLength];
+//    
+//    NSMutableDictionary *profileImageDic = [[NSMutableDictionary alloc] init];
+//    [profileImageDic setObject:uidString forKey:@"uid"];
+//    [profileImageDic setObject:profileImageBase64String forKey:@"profileImage"];
+//    
+//    NSError *encodingJsonError = nil;
+//    NSData *profileImageDicJson = [NSJSONSerialization
+//                                   dataWithJSONObject:profileImageDic
+//                                   options:NSJSONWritingPrettyPrinted error:&encodingJsonError];
+//    
+//    if (encodingJsonError == nil) {
+//        __block BOOL uploadSuccessful = NO;
+//        NSMutableURLRequest *request = [self
+//                                        generatePOSTRequestForService:@"uploadprofileimage"
+//                                        withContentType:@"application/json"
+//                                        withPostBody:profileImageDicJson];
+//        
+//        NSOperationQueue *connectionQueue = [[NSOperationQueue alloc] init];
+//        [NSURLConnection sendAsynchronousRequest:request queue:connectionQueue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+//            
+//            if ([data length] > 0 && connectionError == nil) {
+//                
+//                uploadSuccessful = YES;
+//                
+//            } else if ([data length] == 0) {
+//                if (DEBUG) NSLog(@"[Debug][Error][UMPAPI][Network][uploadProfileImage]No data comes back from server.");
+//                uploadSuccessful = NO;
+//                
+//            } else {
+//                if (DEBUG) NSLog(@"[Debug][Error][UMPAPI][Network][uploadProfileImage]Error during connecting network.");
+//                uploadSuccessful = NO;
+//            }
+//            
+//        }];
+//        
+//        return uploadSuccessful;
+//        
+//    } else {
+//        if (DEBUG) NSLog(@"[Debug][Error]Fail to encode profile image dic into json.");
+//        return NO;
+//    }
+//    
+//}
 
-- (UIImage *)downloadProfileImageForUid:(NSInteger *)uid withSizeCategory:(NSString *)sizeCategory {
-    NSString *requestMessage = [[NSString alloc] initWithFormat:@"?uid=%ld", (long)uid];
-    
-    NSMutableURLRequest *request = [self
-                                    generateGETRequestForService:@"downloadprofileimage"
-                                    withMessage:requestMessage];
-    
-    __block UIImage *profileImage = nil;
-    
-    NSOperationQueue *connectionQueue = [[NSOperationQueue alloc] init];
-    [NSURLConnection sendAsynchronousRequest:request queue:connectionQueue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        
-        if ([data length] > 0 && connectionError == nil) {
-            NSError *decodingJsonError = nil;
-            NSDictionary *imageDic = [NSJSONSerialization
-                                      JSONObjectWithData:data
-                                      options:NSJSONReadingAllowFragments
-                                      error:&decodingJsonError];
-            
-            if (decodingJsonError == nil) {
-                NSString *profileImageBase64String = [imageDic objectForKey:@"profileimage"];
-                NSData *profileImageData = [[NSData alloc]
-                                            initWithBase64EncodedString:profileImageBase64String
-                                            options:0];
-                profileImage = [[UIImage alloc] initWithData:profileImageData];
-                
-            } else {
-                if (DEBUG) NSLog(@"[Debug][Error][UMPAPI][Network][downloadProfileImage]Can not decode json.");
-            }
-            
-        } else if ([data length] == 0) {
-            if (DEBUG) NSLog(@"[Debug][Error][UMPAPI][Network][downloadProfileImage]No data comes back from server.");
-        } else {
-            if (DEBUG) NSLog(@"[Debug][Error][UMPAPI][Network][downloadProfileImage]Error during connecting network.");
-        }
-    }];
-    
-    return profileImage;
-}
+//- (UIImage *)downloadProfileImageForUid:(NSInteger *)uid withSizeCategory:(NSString *)sizeCategory {
+//    NSString *requestMessage = [[NSString alloc] initWithFormat:@"?uid=%ld", (long)uid];
+//    
+//    NSMutableURLRequest *request = [self
+//                                    generateGETRequestForService:@"downloadprofileimage"
+//                                    withMessage:requestMessage];
+//    
+//    __block UIImage *profileImage = nil;
+//    
+//    NSOperationQueue *connectionQueue = [[NSOperationQueue alloc] init];
+//    [NSURLConnection sendAsynchronousRequest:request queue:connectionQueue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+//        
+//        if ([data length] > 0 && connectionError == nil) {
+//            NSError *decodingJsonError = nil;
+//            NSDictionary *imageDic = [NSJSONSerialization
+//                                      JSONObjectWithData:data
+//                                      options:NSJSONReadingAllowFragments
+//                                      error:&decodingJsonError];
+//            
+//            if (decodingJsonError == nil) {
+//                NSString *profileImageBase64String = [imageDic objectForKey:@"profileimage"];
+//                NSData *profileImageData = [[NSData alloc]
+//                                            initWithBase64EncodedString:profileImageBase64String
+//                                            options:0];
+//                profileImage = [[UIImage alloc] initWithData:profileImageData];
+//                
+//            } else {
+//                if (DEBUG) NSLog(@"[Debug][Error][UMPAPI][Network][downloadProfileImage]Can not decode json.");
+//            }
+//            
+//        } else if ([data length] == 0) {
+//            if (DEBUG) NSLog(@"[Debug][Error][UMPAPI][Network][downloadProfileImage]No data comes back from server.");
+//        } else {
+//            if (DEBUG) NSLog(@"[Debug][Error][UMPAPI][Network][downloadProfileImage]Error during connecting network.");
+//        }
+//    }];
+//    
+//    return profileImage;
+//}
 
 - (NSDictionary *)communicateWithServerWithRequest:(NSMutableURLRequest *)request {
     

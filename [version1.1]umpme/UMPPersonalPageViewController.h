@@ -12,6 +12,25 @@
 @interface UMPPersonalPageViewController : UIViewController
 
 
+
+
+// Temp image test:
+@property (weak, nonatomic) IBOutlet UIImageView *mainImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *bigImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *smallImageView;
+
+- (IBAction)clearImagesAction:(id)sender;
+
+- (IBAction)uploadImageAction:(id)sender;
+- (IBAction)downloadBothAction:(id)sender;
+- (IBAction)downloadBigAction:(id)sender;
+- (IBAction)downloadSmallAction:(id)sender;
+
+
+
+
+
+
 // Temp Action:
 - (IBAction)signoutAction:(id)sender;
 
