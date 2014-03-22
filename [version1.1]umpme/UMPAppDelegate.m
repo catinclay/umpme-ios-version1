@@ -17,6 +17,8 @@
     UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
     
     [umpApiManager.umpLocalDB createLocalDB];
+    [umpApiManager.umpLocalDB closeLocalDB];
+    
     [umpApiManager.umpLocalDB openLocalDB];
     
     // Table: autologin

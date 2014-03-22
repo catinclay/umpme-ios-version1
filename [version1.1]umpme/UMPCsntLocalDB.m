@@ -22,7 +22,7 @@
 
 - (id)init {
     if (self = [super init]) {
-        self.localDBName = @"ump_local_db.sqlite";
+        self.localDBName = @"/ump_local_db.sqlite";
     }
     return self;
 }
