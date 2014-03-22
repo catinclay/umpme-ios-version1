@@ -21,7 +21,8 @@
 
 - (id)init {
     if (self = [super init]) {
-        self.umpHostAddress = @"http://localhost:8000";
+        //self.umpHostAddress = @"http://localhost:8000";
+        self.umpHostAddress = @"http://www.umpme.com";
         self.umpServerWeirdString = @"iosisrealgoodsystemforumpme";
         self.umpDeviceCategory = @"mobile";
         self.umpDevice = @"ios";
