@@ -138,6 +138,24 @@
     self.smallImageView.image = [umpApiManager.umpImage downloadSingleImageForUid:uid withService:@"downloadsmallprofileimage"];
     
 }
+
+- (IBAction)getFriendsIdsAction:(id)sender {
+    
+    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
+    
+    NSString *uid = [umpApiManager.umpExtractDataFromLocalDB getCurrUserUid];
+    NSArray *friendsIdsArray = [umpApiManager.umpDownloadData getFriendsIdsArrayForUid:uid];
+    if (friendsIdsArray == nil) {
+        if (UMPME_DEBUG) NSLog(@"[debug][error][personal page vc] friends ids array is nil.");
+    } else {
+        // Print the friends ids.
+        NSInteger friends_num = [friendsIdsArray count];
+        for (NSInteger i = 0; i < friends_num; i ++) {
+            NSLog(@"[debug][personal page vc] friend id = %@", [friendsIdsArray objectAtIndex:i]);
+        }
+    }
+    
+}
 @end
 
 

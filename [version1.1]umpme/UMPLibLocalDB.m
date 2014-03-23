@@ -134,12 +134,14 @@
             sqlite3_finalize(sql_statement);
             return queryResArray;
         } else {
-            if (UMPME_DEBUG) NSLog(@"[Debug][Error]The num of res is not equal to the SQITE_ROW.");
+            // if (UMPME_DEBUG) NSLog(@"[Debug][Error]The num of res is not equal to the SQITE_ROW.");
+            sqlite3_finalize(sql_statement);
             return nil;
         }
         
     } else {
         if (UMPME_DEBUG) NSLog(@"[Debug][Error]Can not execute query on the local db.");
+        sqlite3_finalize(sql_statement);
         return nil;
     }
 }

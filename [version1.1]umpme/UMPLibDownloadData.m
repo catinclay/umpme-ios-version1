@@ -134,7 +134,40 @@
     return nil;
 }
 
-
+- (NSArray *)getFriendsIdsArrayForUid:(NSString *)uid {
+    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
+    UMPCsntManager *umpCsntManager = [UMPCsntManager shareCsntManager];
+    
+    NSString *message = [[NSString alloc] initWithFormat:@"?uid=%@", uid];
+    NSMutableURLRequest *request = [umpApiManager.umpNetwork
+                                    generateGETRequestForService:umpCsntManager.umpCsntNetworkManager.umpServiceGetFriendsIdsArray
+                                    withMessage:message];
+    NSDictionary *backDataDic = [umpApiManager.umpNetwork communicateWithServerWithRequest:request];
+    if (backDataDic == nil) {
+        if (UMPME_DEBUG) NSLog(@"[debug][error][ump api download][get friends ids array] back data dic is nil.");
+        return nil;
+    } else {
+        NSData *connectionBackData = [backDataDic objectForKey:@"backData"];
+        NSError *jsonError = nil;
+        NSDictionary *jsonDic = [NSJSONSerialization
+                                 JSONObjectWithData:connectionBackData
+                                 options:NSJSONReadingAllowFragments
+                                 error:&jsonError];
+        if (jsonError != nil) {
+            if (UMPME_DEBUG) NSLog(@"[debug][error][ump api download][get friends ids array] json error.");
+            return nil;
+        } else {
+            if ([[jsonDic objectForKey:@"succ"] isEqualToString:@"no"]) {
+                if (UMPME_DEBUG) NSLog(@"[debug][error][ump api download][get friends ids array] succ is no.");
+                if (UMPME_DEBUG) NSLog(@"[debug][error][ump api download][get friends ids array] error = %@", [jsonDic objectForKey:@"error"]);
+                return nil;
+            } else {
+                NSArray *friendsIdsArray = [jsonDic objectForKey:@"friendsidsarray"];
+                return friendsIdsArray;
+            }
+        }
+    }
+}
 
 
 

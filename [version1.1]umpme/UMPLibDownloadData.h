@@ -18,4 +18,6 @@
 - (NSDictionary *)downloadLoginSignoutTableDataForUid:(NSString *)uid;
 - (NSArray *)downloadIntMsgTableUnreadMsgForUid:(NSString *)uid;
 
+- (NSArray *)getFriendsIdsArrayForUid:(NSString *)uid;
+
 @end

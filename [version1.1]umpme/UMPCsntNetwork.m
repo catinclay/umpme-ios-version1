@@ -27,6 +27,9 @@
         self.umpDeviceCategory = @"mobile";
         self.umpDevice = @"ios";
         self.umpPostContentType = @"application/json";
+        
+        // Servce
+        self.umpServiceGetFriendsIdsArray = @"getfriendsidsarray";
     }
     return self;
 }

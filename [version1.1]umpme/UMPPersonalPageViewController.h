@@ -25,6 +25,7 @@
 - (IBAction)downloadBothAction:(id)sender;
 - (IBAction)downloadBigAction:(id)sender;
 - (IBAction)downloadSmallAction:(id)sender;
+- (IBAction)getFriendsIdsAction:(id)sender;
 
 
 

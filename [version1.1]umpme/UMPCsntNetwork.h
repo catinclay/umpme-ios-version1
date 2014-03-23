@@ -16,6 +16,9 @@
 @property (strong, nonatomic) NSString *umpDevice;
 @property (strong, nonatomic) NSString *umpPostContentType;
 
+// Service
+@property (strong, nonatomic) NSString *umpServiceGetFriendsIdsArray;
+
 + (id)shareCsntNetworkManager;
 
 @end
