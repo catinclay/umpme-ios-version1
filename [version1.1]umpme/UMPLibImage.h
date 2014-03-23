@@ -15,7 +15,7 @@
 + (id)shareImageManager;
 
 //- (BOOL)uploadImage:(UIImage *)uImage withCompressionQuality:(CGFloat)compressionQuality forUid:(NSString *)uid withService:(NSString *)service;
-- (BOOL)uploadImagesOfBothSizeWithSourceImage:(UIImage *)simage withBigImageCompressionQualityDic:(CGFloat)bigImageCompressionQuality withSmallImageCompressionQuality:(CGFloat)smallImageCompressionQuality forUid:(NSString *)uid withService:(NSString *)service;
+- (BOOL)uploadImagesOfBothSizeWithSourceImage:(UIImage *)simage withBigImageCompressionQuality:(CGFloat)bigImageCompressionQuality withSmallImageCompressionQuality:(CGFloat)smallImageCompressionQuality forUid:(NSString *)uid withService:(NSString *)service;
 - (UIImage *)downloadSingleImageForUid:(NSString *)uid withService:(NSString *)service;
 - (NSDictionary *)downloadImageOfBothSizeForUid:(NSString *)uid withService:(NSString *)service;
 

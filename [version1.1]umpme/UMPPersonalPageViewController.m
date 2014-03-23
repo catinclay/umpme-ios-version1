@@ -95,7 +95,7 @@
     
     BOOL uploadBothSizeImagesBoolFlag = [umpApiManager.umpImage
                                          uploadImagesOfBothSizeWithSourceImage:self.mainImageView.image
-                                         withBigImageCompressionQualityDic:0.5f
+                                         withBigImageCompressionQuality:0.5f
                                          withSmallImageCompressionQuality:0.1f
                                          forUid:uid
                                          withService:@"uploadprofileimage"];

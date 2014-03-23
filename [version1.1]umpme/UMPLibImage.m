@@ -77,7 +77,7 @@
 //    }
 //}
 
-- (BOOL)uploadImagesOfBothSizeWithSourceImage:(UIImage *)simage withBigImageCompressionQualityDic:(CGFloat)bigImageCompressionQuality withSmallImageCompressionQuality:(CGFloat)smallImageCompressionQuality forUid:(NSString *)uid withService:(NSString *)service {
+- (BOOL)uploadImagesOfBothSizeWithSourceImage:(UIImage *)simage withBigImageCompressionQuality:(CGFloat)bigImageCompressionQuality withSmallImageCompressionQuality:(CGFloat)smallImageCompressionQuality forUid:(NSString *)uid withService:(NSString *)service {
     UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
     UMPCsntManager *umpCsntManager = [UMPCsntManager shareCsntManager];
     
