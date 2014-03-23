@@ -34,8 +34,6 @@
     NSString *documentsPath = [paths objectAtIndex:0];
     NSString *databasePath = [documentsPath stringByAppendingString:self.localDBName];
     
-    if (UMPME_DEBUG) NSLog(@"[debug][api][local db][get path]path = %@", databasePath);
-    
     return databasePath;
 }
 

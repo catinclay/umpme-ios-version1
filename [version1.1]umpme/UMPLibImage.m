@@ -195,6 +195,7 @@
         } else {
             if ([[jsonDic objectForKey:@"succ"] isEqualToString:@"no"]) {
                 if (UMPME_DEBUG) NSLog(@"[debug][error][ump lib image][download single image]succ is no.");
+                if (UMPME_DEBUG) NSLog(@"[debug][error][ump lib image][download single image]error = %@", [jsonDic objectForKey:@"error"]);
                 return nil;
             } else {
                 NSString *uImageBase64String = [jsonDic objectForKey:@"uimage"];

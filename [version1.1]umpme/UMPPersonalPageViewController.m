@@ -91,7 +91,7 @@
 - (IBAction)uploadImageAction:(id)sender {
     UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
     
-    NSString *uid = @"1";
+    NSString *uid = [umpApiManager.umpExtractDataFromLocalDB getCurrUserUid];
     
     BOOL uploadBothSizeImagesBoolFlag = [umpApiManager.umpImage
                                          uploadImagesOfBothSizeWithSourceImage:self.mainImageView.image
@@ -107,7 +107,7 @@
 - (IBAction)downloadBothAction:(id)sender {
     UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
     
-    NSString *uid = @"1";
+    NSString *uid = [umpApiManager.umpExtractDataFromLocalDB getCurrUserUid];
     
     NSDictionary *imagesDic = [umpApiManager.umpImage downloadImageOfBothSizeForUid:uid withService:@"downloadbothsizeprofileimages"];
     if (imagesDic == nil) {
@@ -124,7 +124,7 @@
 - (IBAction)downloadBigAction:(id)sender {
     UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
     
-    NSString *uid = @"1";
+    NSString *uid = [umpApiManager.umpExtractDataFromLocalDB getCurrUserUid];
     
     self.bigImageView.image = [umpApiManager.umpImage downloadSingleImageForUid:uid withService:@"downloadbigprofileimage"];
     
@@ -133,7 +133,7 @@
 - (IBAction)downloadSmallAction:(id)sender {
     UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
     
-    NSString *uid = @"1";
+    NSString *uid = [umpApiManager.umpExtractDataFromLocalDB getCurrUserUid];
     
     self.smallImageView.image = [umpApiManager.umpImage downloadSingleImageForUid:uid withService:@"downloadsmallprofileimage"];
     
