@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UMPCacheManager.h"
+#import "UMPLibApiManager.h"
 
-@class UMPLibApiManager;
 
 @interface UMPBhvAutoLogin : NSObject
 
@@ -18,6 +19,7 @@
 - (NSDictionary *)talkToServerToLoginWithDataDic:(NSDictionary *)dataDic;
 - (BOOL)updateLocalLoginTableWithDataDic:(NSDictionary *)dataDic;
 - (BOOL)downloadAndWriteUnreadIntMsgToLocalDBForUid:(NSString *)uid;
+- (BOOL)initCurrUserInfo;
 - (BOOL)connectIntMsgServiceForUid:(NSString *)uid;
 
 @end

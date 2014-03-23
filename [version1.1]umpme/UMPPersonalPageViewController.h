@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UMPBhvManager.h"
+#import "UMPCacheManager.h"
 
 @interface UMPPersonalPageViewController : UIViewController
 
@@ -26,6 +27,7 @@
 - (IBAction)downloadBigAction:(id)sender;
 - (IBAction)downloadSmallAction:(id)sender;
 - (IBAction)getFriendsIdsAction:(id)sender;
+- (IBAction)editPersonalInfoAction:(id)sender;
 
 
 

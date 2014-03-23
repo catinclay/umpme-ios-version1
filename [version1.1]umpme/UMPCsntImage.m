@@ -19,4 +19,12 @@
     return umpImage;
 }
 
+- (id)init {
+    if (self = [super init]) {
+        self.umpUBigImageData = @"ubigimagedata";
+        self.umpUSmallImageData = @"usmallimagedata";
+    }
+    return self;
+}
+
 @end

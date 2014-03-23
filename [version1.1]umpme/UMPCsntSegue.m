@@ -29,6 +29,7 @@
         self.loginToMainTBC = @"segue_loginvc_to_maintbc";
         self.personalPageToLogin = @"segue_personalpagevc_to_loginvc";
         self.contactlistToFriendDetailNC = @"segue_contactlistnc_to_frienddetailnc";
+        self.personalPageToEditPersonalInfo = @"segue_personalpagevc_to_editpersonalinfovc";
     }
     return self;
 }

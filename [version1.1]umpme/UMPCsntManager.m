@@ -26,6 +26,7 @@
         self.umpCsntDateTimeManager = [UMPCsntDateTime shareCsntDateTimeManager];
         self.umpCsntColorManager = [UMPCsntColor shareCsntColorManager];
         self.umpCsntSegueManager = [UMPCsntSegue shareCsntSegueManager];
+        self.umpCsntImageManager = [UMPCsntImage shareCnstImageManager];
     }
     return self;
 }

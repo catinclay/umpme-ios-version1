@@ -34,11 +34,13 @@
             if ([umpBhvManager.umpBhvAutoLogin updateLocalLoginTableWithDataDic:talkToServerBackDic]) {
                 if ([umpBhvManager.umpBhvAutoLogin
                      downloadAndWriteUnreadIntMsgToLocalDBForUid:uid]) {
-                    if ([umpBhvManager.umpBhvAutoLogin connectIntMsgServiceForUid:uid]) {
-                        // Auto login successfully.
-                        is_autologin_succ = YES;
-                        // Go to main tbc.
-                        [self performSegueWithIdentifier:umpCsntManager.umpCsntSegueManager.autoLoginToMainTBC sender:self];
+                    if ([umpBhvManager.umpBhvAutoLogin initCurrUserInfo]) {
+                        if ([umpBhvManager.umpBhvAutoLogin connectIntMsgServiceForUid:uid]) {
+                            // Auto login successfully.
+                            is_autologin_succ = YES;
+                            // Go to main tbc.
+                            [self performSegueWithIdentifier:umpCsntManager.umpCsntSegueManager.autoLoginToMainTBC sender:self];
+                        }
                     }
                 }
             }

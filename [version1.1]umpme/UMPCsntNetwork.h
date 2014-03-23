@@ -17,6 +17,10 @@
 @property (strong, nonatomic) NSString *umpPostContentType;
 
 // Service
+@property (strong, nonatomic) NSString *umpServiceUploadProfileImage;
+@property (strong, nonatomic) NSString *umpServiceDownloadBothSizeProfileImages;
+@property (strong, nonatomic) NSString *umpServiceDownloadBigProfileImage;
+@property (strong, nonatomic) NSString *umpServiceDownloadSmallProfileImage;
 @property (strong, nonatomic) NSString *umpServiceGetFriendsIdsArray;
 
 + (id)shareCsntNetworkManager;

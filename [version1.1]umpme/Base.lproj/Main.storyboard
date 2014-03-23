@@ -287,7 +287,7 @@
                     </navigationBar>
                     <connections>
                         <segue destination="Ja7-Qx-440" kind="relationship" relationship="rootViewController" id="fS9-Op-YSv"/>
-                        <segue destination="lHq-hK-zDh" kind="push" identifier="segue_contactlistnc_to_frienddetailnc" id="dh8-VX-XxO"/>
+                        <segue destination="lHq-hK-zDh" kind="push" identifier="segue_contactlistvc_to_friendvc" id="nr5-Iy-2aw"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z1P-FP-W9S" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -430,7 +430,6 @@
                     </navigationBar>
                     <connections>
                         <segue destination="TNd-Rf-G2i" kind="relationship" relationship="rootViewController" id="99y-6z-aIG"/>
-                        <segue destination="tIc-Z6-nqG" kind="push" id="Iwd-5B-vQJ"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6nh-oG-ZNs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -553,12 +552,26 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="QrX-Mr-CnQ"/>
+                    <navigationItem key="navigationItem" id="QrX-Mr-CnQ">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="9jL-vH-C97">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Poy-L7-Hgc">
+                                <rect key="frame" x="274" y="7" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="eidt">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="editPersonalInfoAction:" destination="TNd-Rf-G2i" eventType="touchUpInside" id="wG0-uk-vD1"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="bigImageView" destination="u8f-QI-LZX" id="C9I-qj-dEA"/>
                         <outlet property="mainImageView" destination="9K6-nT-Mz5" id="rsB-y4-2dI"/>
                         <outlet property="smallImageView" destination="ZOT-ZC-q51" id="ejK-Mh-BIf"/>
                         <segue destination="U6Q-1v-qp5" kind="modal" identifier="segue_personalpagevc_to_loginvc" id="4kk-1d-s0M"/>
+                        <segue destination="tIc-Z6-nqG" kind="push" identifier="segue_personalpagevc_to_editpersonalinfovc" id="i5e-44-6GM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eaH-lF-nOA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -568,7 +581,7 @@
         <!--EditPersonalInfoVC-->
         <scene sceneID="dy6-ee-d6D">
             <objects>
-                <viewController id="tIc-Z6-nqG" userLabel="EditPersonalInfoVC" sceneMemberID="viewController">
+                <viewController id="tIc-Z6-nqG" userLabel="EditPersonalInfoVC" customClass="UMPEditPersonalInfoViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="j51-bv-2Ac"/>
                         <viewControllerLayoutGuide type="bottom" id="lTa-X9-38h"/>

@@ -10,6 +10,9 @@
 
 @interface UMPCsntImage : NSObject
 
+@property (strong, nonatomic) NSString *umpUBigImageData;
+@property (strong, nonatomic) NSString *umpUSmallImageData;
+
 + (id)shareCnstImageManager;
 
 @end

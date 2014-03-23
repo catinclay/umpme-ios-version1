@@ -62,6 +62,7 @@
 - (IBAction)signoutAction:(id)sender {
     UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
     UMPBhvManager *umpBhvManager = [UMPBhvManager shareBhvManager];
+    UMPCsntManager *umpCsntManager = [UMPCsntManager shareCsntManager];
     
     // Get current user uid.
     NSString *uid = [umpApiManager.umpExtractDataFromLocalDB getCurrUserUid];
@@ -72,7 +73,7 @@
                 if ([umpBhvManager.umpBhvSignout clearAutoLoginTableForCurrUser]) {
                     if ([umpBhvManager.umpBhvSignout dropLocalUserCacheTables]) {
                         // Go back to login vc.
-                        [self performSegueWithIdentifier:@"segue_personalpagevc_to_loginvc" sender:self];
+                        [self performSegueWithIdentifier:umpCsntManager.umpCsntSegueManager.personalPageToLogin sender:self];
                     }
                 }
             }
@@ -90,15 +91,17 @@
 
 - (IBAction)uploadImageAction:(id)sender {
     UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
+    UMPCsntManager *umpCsntManager = [UMPCsntManager shareCsntManager];
+    UMPCacheManager *umpCacheManager = [UMPCacheManager shareCacheManager];
     
-    NSString *uid = [umpApiManager.umpExtractDataFromLocalDB getCurrUserUid];
+    NSString *uid = umpCacheManager.umpCurrUser.currUid;
     
     BOOL uploadBothSizeImagesBoolFlag = [umpApiManager.umpImage
                                          uploadImagesOfBothSizeWithSourceImage:self.mainImageView.image
                                          withBigImageCompressionQuality:0.5f
                                          withSmallImageCompressionQuality:0.1f
                                          forUid:uid
-                                         withService:@"uploadprofileimage"];
+                                         withService:umpCsntManager.umpCsntNetworkManager.umpServiceUploadProfileImage];
     if (uploadBothSizeImagesBoolFlag) NSLog(@"upload successfully.");
     else NSLog(@"upload unsuccessully.");
     
@@ -106,15 +109,19 @@
 
 - (IBAction)downloadBothAction:(id)sender {
     UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
+    UMPCsntManager *umpCsntManager = [UMPCsntManager shareCsntManager];
+    UMPCacheManager *umpCacheManager = [UMPCacheManager shareCacheManager];
     
-    NSString *uid = [umpApiManager.umpExtractDataFromLocalDB getCurrUserUid];
+    NSString *uid = umpCacheManager.umpCurrUser.currUid;
     
-    NSDictionary *imagesDic = [umpApiManager.umpImage downloadImageOfBothSizeForUid:uid withService:@"downloadbothsizeprofileimages"];
+    NSDictionary *imagesDic = [umpApiManager.umpImage
+                               downloadImageOfBothSizeForUid:uid
+                               withService:umpCsntManager.umpCsntNetworkManager.umpServiceDownloadBothSizeProfileImages];
     if (imagesDic == nil) {
         NSLog(@"[debug][error][personal page vc]download nothing...");
     } else {
-        NSData *bigImageData = [imagesDic objectForKey:@"ubigimagedata"];
-        NSData *smallImageData = [imagesDic objectForKey:@"usmallimagedata"];
+        NSData *bigImageData = [imagesDic objectForKey:umpCsntManager.umpCsntImageManager.umpUBigImageData];
+        NSData *smallImageData = [imagesDic objectForKey:umpCsntManager.umpCsntImageManager.umpUSmallImageData];
         self.bigImageView.image = [[UIImage alloc] initWithData:bigImageData];
         self.smallImageView.image = [[UIImage alloc] initWithData:smallImageData];
     }
@@ -123,37 +130,45 @@
 
 - (IBAction)downloadBigAction:(id)sender {
     UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
+    UMPCsntManager *umpCsntManager = [UMPCsntManager shareCsntManager];
+    UMPCacheManager *umpCacheManager = [UMPCacheManager shareCacheManager];
     
-    NSString *uid = [umpApiManager.umpExtractDataFromLocalDB getCurrUserUid];
-    
-    self.bigImageView.image = [umpApiManager.umpImage downloadSingleImageForUid:uid withService:@"downloadbigprofileimage"];
+    NSString *uid = umpCacheManager.umpCurrUser.currUid;
+    self.bigImageView.image = [umpApiManager.umpImage
+                               downloadSingleImageForUid:uid
+                               withService:umpCsntManager.umpCsntNetworkManager.umpServiceDownloadBigProfileImage];
     
 }
 
 - (IBAction)downloadSmallAction:(id)sender {
     UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
+    UMPCsntManager *umpCsntManager = [UMPCsntManager shareCsntManager];
+    UMPCacheManager *umpCacheManager = [UMPCacheManager shareCacheManager];
     
-    NSString *uid = [umpApiManager.umpExtractDataFromLocalDB getCurrUserUid];
+    NSString *uid = umpCacheManager.umpCurrUser.currUid;
     
-    self.smallImageView.image = [umpApiManager.umpImage downloadSingleImageForUid:uid withService:@"downloadsmallprofileimage"];
+    self.smallImageView.image = [umpApiManager.umpImage
+                                 downloadSingleImageForUid:uid
+                                 withService:umpCsntManager.umpCsntNetworkManager.umpServiceDownloadSmallProfileImage];
     
 }
 
 - (IBAction)getFriendsIdsAction:(id)sender {
     
-    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
-    
-    NSString *uid = [umpApiManager.umpExtractDataFromLocalDB getCurrUserUid];
-    NSArray *friendsIdsArray = [umpApiManager.umpDownloadData getFriendsIdsArrayForUid:uid];
-    if (friendsIdsArray == nil) {
-        if (UMPME_DEBUG) NSLog(@"[debug][error][personal page vc] friends ids array is nil.");
-    } else {
-        // Print the friends ids.
-        NSInteger friends_num = [friendsIdsArray count];
-        for (NSInteger i = 0; i < friends_num; i ++) {
-            NSLog(@"[debug][personal page vc] friend id = %@", [friendsIdsArray objectAtIndex:i]);
-        }
+    UMPCacheManager *umpCacheManager = [UMPCacheManager shareCacheManager];
+    NSArray *friendsIdsArray = umpCacheManager.umpCurrUser.friendsIdsArray;
+    // Print the friends ids.
+    NSInteger friends_num = [friendsIdsArray count];
+    for (NSInteger i = 0; i < friends_num; i ++) {
+        NSLog(@"[debug][personal page vc] friend id = %@", [friendsIdsArray objectAtIndex:i]);
     }
+    
+}
+
+- (IBAction)editPersonalInfoAction:(id)sender {
+    UMPCsntManager *umpCsntManager = [UMPCsntManager shareCsntManager];
+    
+    [self performSegueWithIdentifier:umpCsntManager.umpCsntSegueManager.personalPageToEditPersonalInfo sender:self];
     
 }
 @end

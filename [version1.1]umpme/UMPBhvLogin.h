@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "UMPCsntManager.h"
 #import "UMPLibApiManager.h"
+#import "UMPCacheManager.h"
 
 
 @interface UMPBhvLogin : NSObject
@@ -31,7 +32,9 @@
 - (BOOL)updateServerAutoLoginFlagForUid:(NSString *)uid basedOnSwitch:(UISwitch *)autoLoginSwitch;
 - (BOOL)writeAutoLoginInfoIntoLocalDBForUid:(NSString *)uid;
 - (BOOL)writeIntMsgDataIntoLocalIntMsgTableForUid:(NSString *)uid;
+- (BOOL)initCurrUserInfo;
 
 - (BOOL)connectIntMsgServerForUid:(NSString *)uid;
+
 
 @end

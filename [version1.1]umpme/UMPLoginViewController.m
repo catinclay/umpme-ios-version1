@@ -128,15 +128,17 @@
                                         [umpApiManager.umpLocalDB closeLocalDB]) {
                                         
                                         if ([umpBhvManager.umpBhvLogin writeIntMsgDataIntoLocalIntMsgTableForUid:backUid]) {
-                                            if ([umpBhvManager.umpBhvLogin connectIntMsgServerForUid:backUid]) {
-                                                
-                                                // Login successfully.
-                                                
-                                                [self performSegueWithIdentifier:umpCsntManager.umpCsntSegueManager.loginToMainTBC
-                                                                          sender:self];
-                                                
-                                                //////////////////////
-                                                
+                                            if ([umpBhvManager.umpBhvLogin initCurrUserInfo]) {
+                                                if ([umpBhvManager.umpBhvLogin connectIntMsgServerForUid:backUid]) {
+                                                    
+                                                    // Login successfully.
+                                                    
+                                                    [self performSegueWithIdentifier:umpCsntManager.umpCsntSegueManager.loginToMainTBC
+                                                                              sender:self];
+                                                    
+                                                    //////////////////////
+                                                    
+                                                }
                                             }
                                         }
                                     }

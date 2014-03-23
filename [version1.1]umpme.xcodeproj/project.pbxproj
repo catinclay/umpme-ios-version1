@@ -41,6 +41,9 @@
 		3D7CA34618D4C5CF00B45472 /* UMPPersonalPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D7CA34518D4C5CF00B45472 /* UMPPersonalPageViewController.m */; };
 		3D7CA34A18D4D30F00B45472 /* UMPLibRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D7CA34918D4D30F00B45472 /* UMPLibRegex.m */; };
 		3D7CA34D18D4D50600B45472 /* UMPLibLocalDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D7CA34C18D4D50600B45472 /* UMPLibLocalDB.m */; };
+		3DACD2A118DF7B87008DC8F0 /* UMPEditPersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DACD2A018DF7B87008DC8F0 /* UMPEditPersonalInfoViewController.m */; };
+		3DACD2A518DF824F008DC8F0 /* UMPCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DACD2A418DF824F008DC8F0 /* UMPCacheManager.m */; };
+		3DACD2A918DF8366008DC8F0 /* UMPCurrUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DACD2A818DF8366008DC8F0 /* UMPCurrUser.m */; };
 		3DB55EB018D9591D0053413E /* UMPLibSyncToLocalDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB55EAF18D9591D0053413E /* UMPLibSyncToLocalDB.m */; };
 		3DCC984418DA0FA100240C34 /* UMPBhvLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCC984318DA0FA100240C34 /* UMPBhvLogin.m */; };
 		3DDFE8BC18DA411F008659D8 /* UMPLibExtractDataFromLocalDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDFE8BB18DA411F008659D8 /* UMPLibExtractDataFromLocalDB.m */; };
@@ -120,6 +123,12 @@
 		3D7CA34918D4D30F00B45472 /* UMPLibRegex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMPLibRegex.m; sourceTree = "<group>"; };
 		3D7CA34B18D4D50600B45472 /* UMPLibLocalDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMPLibLocalDB.h; sourceTree = "<group>"; };
 		3D7CA34C18D4D50600B45472 /* UMPLibLocalDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMPLibLocalDB.m; sourceTree = "<group>"; };
+		3DACD29F18DF7B87008DC8F0 /* UMPEditPersonalInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMPEditPersonalInfoViewController.h; sourceTree = "<group>"; };
+		3DACD2A018DF7B87008DC8F0 /* UMPEditPersonalInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMPEditPersonalInfoViewController.m; sourceTree = "<group>"; };
+		3DACD2A318DF824F008DC8F0 /* UMPCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMPCacheManager.h; sourceTree = "<group>"; };
+		3DACD2A418DF824F008DC8F0 /* UMPCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMPCacheManager.m; sourceTree = "<group>"; };
+		3DACD2A718DF8366008DC8F0 /* UMPCurrUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMPCurrUser.h; sourceTree = "<group>"; };
+		3DACD2A818DF8366008DC8F0 /* UMPCurrUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMPCurrUser.m; sourceTree = "<group>"; };
 		3DB55EAE18D9591D0053413E /* UMPLibSyncToLocalDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMPLibSyncToLocalDB.h; sourceTree = "<group>"; };
 		3DB55EAF18D9591D0053413E /* UMPLibSyncToLocalDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMPLibSyncToLocalDB.m; sourceTree = "<group>"; };
 		3DCC984218DA0FA100240C34 /* UMPBhvLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMPBhvLogin.h; sourceTree = "<group>"; };
@@ -390,6 +399,7 @@
 				3D7CA31718D4BA8500B45472 /* UMPAppDelegate.h */,
 				3D7CA31818D4BA8500B45472 /* UMPAppDelegate.m */,
 				3D7CA31A18D4BA8500B45472 /* Main.storyboard */,
+				3DACD2A218DF8103008DC8F0 /* umpme cache */,
 				3D11DC1918DE06D100F4F062 /* umpme static */,
 				3DF1918318D55B3800B49BA6 /* umpme constant */,
 				3D7CA34718D4CD3D00B45472 /* umpme lib api */,
@@ -441,6 +451,8 @@
 				3D7CA34218D4C5B800B45472 /* UMPSignupViewController.m */,
 				3D7CA34418D4C5CF00B45472 /* UMPPersonalPageViewController.h */,
 				3D7CA34518D4C5CF00B45472 /* UMPPersonalPageViewController.m */,
+				3DACD29F18DF7B87008DC8F0 /* UMPEditPersonalInfoViewController.h */,
+				3DACD2A018DF7B87008DC8F0 /* UMPEditPersonalInfoViewController.m */,
 			);
 			name = "umpme controllers";
 			sourceTree = "<group>";
@@ -462,6 +474,33 @@
 				3D2EFA5918DD49A300F0FB43 /* UMPLibImage.m */,
 			);
 			name = image;
+			sourceTree = "<group>";
+		};
+		3DACD2A218DF8103008DC8F0 /* umpme cache */ = {
+			isa = PBXGroup;
+			children = (
+				3DACD2A318DF824F008DC8F0 /* UMPCacheManager.h */,
+				3DACD2A418DF824F008DC8F0 /* UMPCacheManager.m */,
+				3DACD2AA18DF89B7008DC8F0 /* umpme cache details */,
+			);
+			name = "umpme cache";
+			sourceTree = "<group>";
+		};
+		3DACD2A618DF8333008DC8F0 /* curr user */ = {
+			isa = PBXGroup;
+			children = (
+				3DACD2A718DF8366008DC8F0 /* UMPCurrUser.h */,
+				3DACD2A818DF8366008DC8F0 /* UMPCurrUser.m */,
+			);
+			name = "curr user";
+			sourceTree = "<group>";
+		};
+		3DACD2AA18DF89B7008DC8F0 /* umpme cache details */ = {
+			isa = PBXGroup;
+			children = (
+				3DACD2A618DF8333008DC8F0 /* curr user */,
+			);
+			name = "umpme cache details";
 			sourceTree = "<group>";
 		};
 		3DB55EAB18D955100053413E /* sync to local db */ = {
@@ -649,7 +688,9 @@
 				3D5922D318DCD44F004BF35D /* UMPBhvAutoLogin.m in Sources */,
 				3D5283CC18D8D5D100AAFA1F /* UMPCsntNetwork.m in Sources */,
 				3D5922CF18DCC261004BF35D /* UMPBhvSignout.m in Sources */,
+				3DACD2A918DF8366008DC8F0 /* UMPCurrUser.m in Sources */,
 				3D7CA31518D4BA8500B45472 /* main.m in Sources */,
+				3DACD2A518DF824F008DC8F0 /* UMPCacheManager.m in Sources */,
 				3D7CA34018D4C5AB00B45472 /* UMPLoginViewController.m in Sources */,
 				3D5283D118D8D6E800AAFA1F /* UMPCsntLocalDB.m in Sources */,
 				3D5283EB18D8E0AB00AAFA1F /* UMPCsntSegue.m in Sources */,
@@ -666,6 +707,7 @@
 				3D7CA31918D4BA8500B45472 /* UMPAppDelegate.m in Sources */,
 				3DF1917C18D553AE00B49BA6 /* UMPBhvSignup.m in Sources */,
 				3D2EFA5A18DD49A300F0FB43 /* UMPLibImage.m in Sources */,
+				3DACD2A118DF7B87008DC8F0 /* UMPEditPersonalInfoViewController.m in Sources */,
 				3D5283D518D8D79700AAFA1F /* UMPCsntDateTime.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

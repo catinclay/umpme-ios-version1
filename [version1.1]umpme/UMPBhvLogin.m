@@ -226,6 +226,23 @@
     return YES;
 }
 
+- (BOOL)initCurrUserInfo {
+    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
+    UMPCacheManager *umpCacheManager = [UMPCacheManager shareCacheManager];
+    
+    // Get current user uid.
+    umpCacheManager.umpCurrUser.currUid = [umpApiManager.umpExtractDataFromLocalDB getCurrUserUid];
+    // Get current user's friends ids array.
+    umpCacheManager.umpCurrUser.friendsIdsArray = [umpApiManager.umpDownloadData
+                                                   getFriendsIdsArrayForUid:umpCacheManager.umpCurrUser.currUid];
+    if (umpCacheManager.umpCurrUser.friendsIdsArray == nil) {
+        return NO;
+    } else {
+        return YES;
+    }
+    
+}
+
 - (BOOL)connectIntMsgServerForUid:(NSString *)uid {
     // Do something.
     return YES;

@@ -29,6 +29,10 @@
         self.umpPostContentType = @"application/json";
         
         // Servce
+        self.umpServiceUploadProfileImage = @"uploadprofileimage";
+        self.umpServiceDownloadBothSizeProfileImages = @"downloadbothsizeprofileimages";
+        self.umpServiceDownloadBigProfileImage = @"downloadbigprofileimage";
+        self.umpServiceDownloadSmallProfileImage = @"downloadsmallprofileimage";
         self.umpServiceGetFriendsIdsArray = @"getfriendsidsarray";
     }
     return self;
