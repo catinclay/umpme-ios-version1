@@ -29,6 +29,21 @@
     // Do any additional setup after loading the view.
 }
 
+-(void) viewWillAppear:(BOOL)animated
+{
+    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
+    UMPCsntManager *umpCsntManager = [UMPCsntManager shareCsntManager];
+    UMPCacheManager *umpCacheManager = [UMPCacheManager shareCacheManager];
+    
+    NSString *uid = umpCacheManager.umpCurrUser.currUid;
+    self.mainImageView.image = [umpApiManager.umpImage
+                                downloadSingleImageForUid:uid
+                                withService:umpCsntManager.umpCsntNetworkManager.umpServiceDownloadBigProfileImage];
+    
+    self.mainImageView.contentMode = UIViewContentModeScaleAspectFit;
+    
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -107,51 +122,58 @@
     
 }
 
-- (IBAction)downloadBothAction:(id)sender {
-    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
-    UMPCsntManager *umpCsntManager = [UMPCsntManager shareCsntManager];
-    UMPCacheManager *umpCacheManager = [UMPCacheManager shareCacheManager];
-    
-    NSString *uid = umpCacheManager.umpCurrUser.currUid;
-    
-    NSDictionary *imagesDic = [umpApiManager.umpImage
-                               downloadImageOfBothSizeForUid:uid
-                               withService:umpCsntManager.umpCsntNetworkManager.umpServiceDownloadBothSizeProfileImages];
-    if (imagesDic == nil) {
-        NSLog(@"[debug][error][personal page vc]download nothing...");
-    } else {
-        NSData *bigImageData = [imagesDic objectForKey:umpCsntManager.umpCsntImageManager.umpUBigImageData];
-        NSData *smallImageData = [imagesDic objectForKey:umpCsntManager.umpCsntImageManager.umpUSmallImageData];
-        self.bigImageView.image = [[UIImage alloc] initWithData:bigImageData];
-        self.smallImageView.image = [[UIImage alloc] initWithData:smallImageData];
-    }
-    
-}
-
-- (IBAction)downloadBigAction:(id)sender {
-    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
-    UMPCsntManager *umpCsntManager = [UMPCsntManager shareCsntManager];
-    UMPCacheManager *umpCacheManager = [UMPCacheManager shareCacheManager];
-    
-    NSString *uid = umpCacheManager.umpCurrUser.currUid;
-    self.bigImageView.image = [umpApiManager.umpImage
-                               downloadSingleImageForUid:uid
-                               withService:umpCsntManager.umpCsntNetworkManager.umpServiceDownloadBigProfileImage];
-    
-}
-
-- (IBAction)downloadSmallAction:(id)sender {
-    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
-    UMPCsntManager *umpCsntManager = [UMPCsntManager shareCsntManager];
-    UMPCacheManager *umpCacheManager = [UMPCacheManager shareCacheManager];
-    
-    NSString *uid = umpCacheManager.umpCurrUser.currUid;
-    
-    self.smallImageView.image = [umpApiManager.umpImage
-                                 downloadSingleImageForUid:uid
-                                 withService:umpCsntManager.umpCsntNetworkManager.umpServiceDownloadSmallProfileImage];
-    
-}
+//- (IBAction)downloadBothAction:(id)sender {
+//    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
+//    UMPCsntManager *umpCsntManager = [UMPCsntManager shareCsntManager];
+//    UMPCacheManager *umpCacheManager = [UMPCacheManager shareCacheManager];
+//    
+//    NSString *uid = umpCacheManager.umpCurrUser.currUid;
+//    
+//    NSDictionary *imagesDic = [umpApiManager.umpImage
+//                               downloadImageOfBothSizeForUid:uid
+//                               withService:umpCsntManager.umpCsntNetworkManager.umpServiceDownloadBothSizeProfileImages];
+//    if (imagesDic == nil) {
+//        NSLog(@"[debug][error][personal page vc]download nothing...");
+//    } else {
+//        NSData *bigImageData = [imagesDic objectForKey:umpCsntManager.umpCsntImageManager.umpUBigImageData];
+//        NSData *smallImageData = [imagesDic objectForKey:umpCsntManager.umpCsntImageManager.umpUSmallImageData];
+//        self.bigImageView.image = [[UIImage alloc] initWithData:bigImageData];
+//        self.smallImageView.image = [[UIImage alloc] initWithData:smallImageData];
+//        self.bigImageView.contentMode = UIViewContentModeScaleAspectFit;
+//        self.smallImageView.contentMode = UIViewContentModeScaleAspectFit;
+//
+//    }
+//    
+//}
+//
+//- (IBAction)downloadBigAction:(id)sender {
+//    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
+//    UMPCsntManager *umpCsntManager = [UMPCsntManager shareCsntManager];
+//    UMPCacheManager *umpCacheManager = [UMPCacheManager shareCacheManager];
+//    
+//    NSString *uid = umpCacheManager.umpCurrUser.currUid;
+//    self.bigImageView.image = [umpApiManager.umpImage
+//                               downloadSingleImageForUid:uid
+//                               withService:umpCsntManager.umpCsntNetworkManager.umpServiceDownloadBigProfileImage];
+//    self.bigImageView.contentMode = UIViewContentModeScaleAspectFit;
+//   
+//    
+//}
+//
+//- (IBAction)downloadSmallAction:(id)sender {
+//    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
+//    UMPCsntManager *umpCsntManager = [UMPCsntManager shareCsntManager];
+//    UMPCacheManager *umpCacheManager = [UMPCacheManager shareCacheManager];
+//    
+//    NSString *uid = umpCacheManager.umpCurrUser.currUid;
+//    
+//    self.smallImageView.image = [umpApiManager.umpImage
+//                                 downloadSingleImageForUid:uid
+//                                 withService:umpCsntManager.umpCsntNetworkManager.umpServiceDownloadSmallProfileImage];
+//    self.smallImageView.contentMode = UIViewContentModeScaleAspectFit;
+//
+//    
+//}
 
 - (IBAction)getFriendsIdsAction:(id)sender {
     

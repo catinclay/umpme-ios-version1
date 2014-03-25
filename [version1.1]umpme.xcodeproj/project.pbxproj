@@ -54,6 +54,13 @@
 		3DF1917F18D557C200B49BA6 /* UMPLibMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1917E18D557C200B49BA6 /* UMPLibMD5.m */; };
 		3DF1918218D5599E00B49BA6 /* UMPLibNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1918118D5599E00B49BA6 /* UMPLibNetwork.m */; };
 		3DFE257218D932A0009146B8 /* UMPLibDownloadData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFE257118D932A0009146B8 /* UMPLibDownloadData.m */; };
+		442AF18218DFC3F600349206 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D7CA31A18D4BA8500B45472 /* Main.storyboard */; };
+		44402A6818DFDF3A0057667B /* UMPContactListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44402A6718DFDF3A0057667B /* UMPContactListViewController.m */; };
+		44402A6918DFDF3A0057667B /* UMPContactListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44402A6718DFDF3A0057667B /* UMPContactListViewController.m */; };
+		44402A6C18E159A90057667B /* UMPFriendDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44402A6B18E159A90057667B /* UMPFriendDetailViewController.m */; };
+		44402A6D18E159A90057667B /* UMPFriendDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44402A6B18E159A90057667B /* UMPFriendDetailViewController.m */; };
+		44402A7018E1C3F90057667B /* UMPInstantMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44402A6F18E1C3F90057667B /* UMPInstantMessageViewController.m */; };
+		44402A7118E1C3F90057667B /* UMPInstantMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44402A6F18E1C3F90057667B /* UMPInstantMessageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,6 +156,12 @@
 		3DF1918118D5599E00B49BA6 /* UMPLibNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMPLibNetwork.m; sourceTree = "<group>"; };
 		3DFE257018D932A0009146B8 /* UMPLibDownloadData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMPLibDownloadData.h; sourceTree = "<group>"; };
 		3DFE257118D932A0009146B8 /* UMPLibDownloadData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMPLibDownloadData.m; sourceTree = "<group>"; };
+		44402A6618DFDF3A0057667B /* UMPContactListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMPContactListViewController.h; sourceTree = "<group>"; };
+		44402A6718DFDF3A0057667B /* UMPContactListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMPContactListViewController.m; sourceTree = "<group>"; };
+		44402A6A18E159A90057667B /* UMPFriendDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMPFriendDetailViewController.h; sourceTree = "<group>"; };
+		44402A6B18E159A90057667B /* UMPFriendDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMPFriendDetailViewController.m; sourceTree = "<group>"; };
+		44402A6E18E1C3F90057667B /* UMPInstantMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMPInstantMessageViewController.h; sourceTree = "<group>"; };
+		44402A6F18E1C3F90057667B /* UMPInstantMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMPInstantMessageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -453,6 +466,12 @@
 				3D7CA34518D4C5CF00B45472 /* UMPPersonalPageViewController.m */,
 				3DACD29F18DF7B87008DC8F0 /* UMPEditPersonalInfoViewController.h */,
 				3DACD2A018DF7B87008DC8F0 /* UMPEditPersonalInfoViewController.m */,
+				44402A6618DFDF3A0057667B /* UMPContactListViewController.h */,
+				44402A6718DFDF3A0057667B /* UMPContactListViewController.m */,
+				44402A6A18E159A90057667B /* UMPFriendDetailViewController.h */,
+				44402A6B18E159A90057667B /* UMPFriendDetailViewController.m */,
+				44402A6E18E1C3F90057667B /* UMPInstantMessageViewController.h */,
+				44402A6F18E1C3F90057667B /* UMPInstantMessageViewController.m */,
 			);
 			name = "umpme controllers";
 			sourceTree = "<group>";
@@ -666,6 +685,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D7CA33218D4BA8500B45472 /* InfoPlist.strings in Resources */,
+				442AF18218DFC3F600349206 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -691,7 +711,9 @@
 				3DACD2A918DF8366008DC8F0 /* UMPCurrUser.m in Sources */,
 				3D7CA31518D4BA8500B45472 /* main.m in Sources */,
 				3DACD2A518DF824F008DC8F0 /* UMPCacheManager.m in Sources */,
+				44402A6818DFDF3A0057667B /* UMPContactListViewController.m in Sources */,
 				3D7CA34018D4C5AB00B45472 /* UMPLoginViewController.m in Sources */,
+				44402A6C18E159A90057667B /* UMPFriendDetailViewController.m in Sources */,
 				3D5283D118D8D6E800AAFA1F /* UMPCsntLocalDB.m in Sources */,
 				3D5283EB18D8E0AB00AAFA1F /* UMPCsntSegue.m in Sources */,
 				3DB55EB018D9591D0053413E /* UMPLibSyncToLocalDB.m in Sources */,
@@ -707,6 +729,7 @@
 				3D7CA31918D4BA8500B45472 /* UMPAppDelegate.m in Sources */,
 				3DF1917C18D553AE00B49BA6 /* UMPBhvSignup.m in Sources */,
 				3D2EFA5A18DD49A300F0FB43 /* UMPLibImage.m in Sources */,
+				44402A7018E1C3F90057667B /* UMPInstantMessageViewController.m in Sources */,
 				3DACD2A118DF7B87008DC8F0 /* UMPEditPersonalInfoViewController.m in Sources */,
 				3D5283D518D8D79700AAFA1F /* UMPCsntDateTime.m in Sources */,
 			);
@@ -716,7 +739,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44402A6D18E159A90057667B /* UMPFriendDetailViewController.m in Sources */,
+				44402A7118E1C3F90057667B /* UMPInstantMessageViewController.m in Sources */,
 				3D7CA33418D4BA8500B45472 /* _version1_1_umpmeTests.m in Sources */,
+				44402A6918DFDF3A0057667B /* UMPContactListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -836,6 +862,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "[version1.1]umpme/[version1.1]umpme-Prefix.pch";
 				INFOPLIST_FILE = "[version1.1]umpme/[version1.1]umpme-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -849,6 +876,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "[version1.1]umpme/[version1.1]umpme-Prefix.pch";
 				INFOPLIST_FILE = "[version1.1]umpme/[version1.1]umpme-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

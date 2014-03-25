@@ -27,6 +27,12 @@
                             green:76/255.0f
                             blue:60/255.0f
                             alpha:1.0];
+        self.umpGreenColor =[UIColor
+                             colorWithRed:39/255.0f
+                             green:174/255.0f
+                             blue:96/255.0f
+                             alpha:1.0];
+        
     }
     return self;
 }

@@ -235,6 +235,7 @@
     // Get current user's friends ids array.
     umpCacheManager.umpCurrUser.friendsIdsArray = [umpApiManager.umpDownloadData
                                                    getFriendsIdsArrayForUid:umpCacheManager.umpCurrUser.currUid];
+    
     if (umpCacheManager.umpCurrUser.friendsIdsArray == nil) {
         return NO;
     } else {

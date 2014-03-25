@@ -27,6 +27,16 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [_saveEditedPersonal addTarget:self action:@selector(editDone) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    
+}
+
+-(void)editDone{
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,4 +56,67 @@
 }
 */
 
+- (IBAction)takePhoto:(UIButton *)sender {
+    
+    BOOL cameraAvailabe = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
+    
+    BOOL frontCarmeraAvailabe = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
+    
+    if (cameraAvailabe || frontCarmeraAvailabe){
+        
+        UIImagePickerController *take = [[UIImagePickerController alloc] init];
+        take.delegate = self;
+        take.allowsEditing = YES;
+        take.sourceType = UIImagePickerControllerSourceTypeCamera;
+        
+        [self presentViewController:take animated:YES completion:NULL];
+    }
+    
+    else{
+        UIAlertView *cameraAlert = [[UIAlertView alloc] initWithTitle:@"ERROR" message:@"Camera has not been set up!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        
+        [cameraAlert show];
+        
+    }
+
+}
+
+- (IBAction)choosePhoto:(UIButton *)sender {
+    UIImagePickerController *choose = [[UIImagePickerController alloc] init];
+    
+    choose.delegate = self;
+    choose.allowsEditing = YES;
+    choose.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self presentViewController:choose animated:YES completion:NULL];
+}
+
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    UIImage *chosenphoto = info[UIImagePickerControllerEditedImage];
+    [self.myImage setImage:chosenphoto];
+    
+    self.myImage.contentMode = UIViewContentModeScaleAspectFit;
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (IBAction)saveEditedPersonal:(id)sender {
+    UMPLibApiManager *umpApiManager = [UMPLibApiManager shareApiManager];
+    UMPCsntManager *umpCsntManager = [UMPCsntManager shareCsntManager];
+    UMPCacheManager *umpCacheManager = [UMPCacheManager shareCacheManager];
+    
+    NSString *uid = umpCacheManager.umpCurrUser.currUid;
+    
+    BOOL uploadBothSizeImagesBoolFlag = [umpApiManager.umpImage
+                                         uploadImagesOfBothSizeWithSourceImage:self.myImage.image
+                                         withBigImageCompressionQuality:0.5f
+                                         withSmallImageCompressionQuality:0.1f
+                                         forUid:uid
+                                         withService:umpCsntManager.umpCsntNetworkManager.umpServiceUploadProfileImage];
+    if (uploadBothSizeImagesBoolFlag) NSLog(@"upload successfully.");
+    else NSLog(@"upload unsuccessully.");
+
+}
 @end

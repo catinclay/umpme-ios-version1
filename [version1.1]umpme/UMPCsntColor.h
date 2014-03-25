@@ -12,6 +12,8 @@
 
 @property (strong, nonatomic) UIColor *umpBlackColor;
 @property (strong, nonatomic) UIColor *umpRedColor;
+@property (strong, nonatomic) UIColor *umpGreenColor;
+
 
 + (id)shareCsntColorManager;
 
