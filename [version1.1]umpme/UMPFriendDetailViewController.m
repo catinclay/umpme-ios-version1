@@ -95,7 +95,17 @@
         //        NSObject *object = (personObject *)self.objects[indexPath.row];
         //        [[segue destinationViewController] setDetailItem:object];
     }
-}
+    
+    if ([[segue identifier] isEqualToString:@"segue_frienddetailvc_to_friendlocationvc"]) {
+        
+        
+        UMPInstantMessageViewController *destinationVC = [segue destinationViewController];
+        destinationVC.friendID = self.friendID;
+        //        [[segue destinationViewController] setDetailItem:object];
+        
+        //        NSObject *object = (personObject *)self.objects[indexPath.row];
+        //        [[segue destinationViewController] setDetailItem:object];
+    }}
 
 - (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
 {

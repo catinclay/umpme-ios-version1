@@ -205,13 +205,28 @@ NSMutableArray * messages;
     if (jsonError == nil) {
         
 //        [messages insertObject:[NSString stringWithFormat:@"%@",[jsonDic objectForKey:@"message"]] atIndex:0];
-        [messages insertObject:jsonDic atIndex:0];
+        NSString *operation = [jsonDic objectForKey:@"operation"];
+        if([operation isEqualToString:@"message_to"]){
+            [messages insertObject:jsonDic atIndex:0];
+            [self.messageTableView reloadData];
+
+        }
 
 //        NSLog(@"get!!!: %@", [NSString stringWithFormat:@"%@",[jsonDic objectForKey:@"message"]]);
     }
 
-	[self.messageTableView reloadData];
     
+}
+
+-(void) viewWillDisappear:(BOOL)animated {
+        NSMutableDictionary *insertDataMutableDic = [[NSMutableDictionary alloc] init];
+        [insertDataMutableDic setObject:@"logout_chat" forKey:@"operation"];
+    
+        NSError *error;
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:insertDataMutableDic
+                                                           options:1 // Pass 0 if you don't care about the readability of the generated string
+                                                             error:&error];
+        [outputStream write:[jsonData bytes] maxLength:[jsonData length]];
 }
 
 @end

@@ -61,6 +61,9 @@
 		44402A6D18E159A90057667B /* UMPFriendDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44402A6B18E159A90057667B /* UMPFriendDetailViewController.m */; };
 		44402A7018E1C3F90057667B /* UMPInstantMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44402A6F18E1C3F90057667B /* UMPInstantMessageViewController.m */; };
 		44402A7118E1C3F90057667B /* UMPInstantMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44402A6F18E1C3F90057667B /* UMPInstantMessageViewController.m */; };
+		44E8909318EA6E5200EFDB65 /* UMPFriendLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E8909218EA6E5200EFDB65 /* UMPFriendLocationViewController.m */; };
+		44E8909518EA6FDE00EFDB65 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44E8909418EA6FDE00EFDB65 /* MapKit.framework */; };
+		44E8909718EA6FEC00EFDB65 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44E8909618EA6FEC00EFDB65 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,6 +165,10 @@
 		44402A6B18E159A90057667B /* UMPFriendDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMPFriendDetailViewController.m; sourceTree = "<group>"; };
 		44402A6E18E1C3F90057667B /* UMPInstantMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMPInstantMessageViewController.h; sourceTree = "<group>"; };
 		44402A6F18E1C3F90057667B /* UMPInstantMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMPInstantMessageViewController.m; sourceTree = "<group>"; };
+		44E8909118EA6E5200EFDB65 /* UMPFriendLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMPFriendLocationViewController.h; sourceTree = "<group>"; };
+		44E8909218EA6E5200EFDB65 /* UMPFriendLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMPFriendLocationViewController.m; sourceTree = "<group>"; };
+		44E8909418EA6FDE00EFDB65 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		44E8909618EA6FEC00EFDB65 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +176,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44E8909718EA6FEC00EFDB65 /* CoreLocation.framework in Frameworks */,
+				44E8909518EA6FDE00EFDB65 /* MapKit.framework in Frameworks */,
 				3D0D990818D4E10A00769C07 /* libsqlite3.0.dylib in Frameworks */,
 				3D0D990918D4E10A00769C07 /* libsqlite3.dylib in Frameworks */,
 				3D7CA30B18D4BA8500B45472 /* CoreGraphics.framework in Frameworks */,
@@ -396,6 +405,8 @@
 		3D7CA30718D4BA8500B45472 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				44E8909618EA6FEC00EFDB65 /* CoreLocation.framework */,
+				44E8909418EA6FDE00EFDB65 /* MapKit.framework */,
 				3D0D990618D4E10A00769C07 /* libsqlite3.0.dylib */,
 				3D0D990718D4E10A00769C07 /* libsqlite3.dylib */,
 				3D7CA30818D4BA8500B45472 /* Foundation.framework */,
@@ -472,6 +483,8 @@
 				44402A6B18E159A90057667B /* UMPFriendDetailViewController.m */,
 				44402A6E18E1C3F90057667B /* UMPInstantMessageViewController.h */,
 				44402A6F18E1C3F90057667B /* UMPInstantMessageViewController.m */,
+				44E8909118EA6E5200EFDB65 /* UMPFriendLocationViewController.h */,
+				44E8909218EA6E5200EFDB65 /* UMPFriendLocationViewController.m */,
 			);
 			name = "umpme controllers";
 			sourceTree = "<group>";
@@ -723,6 +736,7 @@
 				3D7CA31F18D4BA8500B45472 /* UMPViewController.m in Sources */,
 				3D5283E418D8DB9700AAFA1F /* UMPBhvManager.m in Sources */,
 				3D5283DC18D8D8D900AAFA1F /* UMPCsntManager.m in Sources */,
+				44E8909318EA6E5200EFDB65 /* UMPFriendLocationViewController.m in Sources */,
 				3D4EE0A818D6B57B00F14269 /* UMPLibDateTime.m in Sources */,
 				3DF1918218D5599E00B49BA6 /* UMPLibNetwork.m in Sources */,
 				3DDFE8BC18DA411F008659D8 /* UMPLibExtractDataFromLocalDB.m in Sources */,
@@ -816,7 +830,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -848,7 +862,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

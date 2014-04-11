@@ -360,6 +360,16 @@
                                 <rect key="frame" x="72" y="97" width="177" height="180"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rnb-Lf-VII">
+                                <rect key="frame" x="220" y="331" width="65" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Map">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="feX-iq-asI" kind="push" identifier="segue_frienddetailvc_to_friendlocationvc" id="9zQ-XM-84W"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -380,7 +390,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="friendImageView" destination="To3-n7-ZKK" id="dA9-Nv-1De"/>
-                        <segue destination="feX-iq-asI" kind="push" id="Gsa-UG-buj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e8j-Ih-vZ1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -451,7 +460,7 @@
         <!--FindFriendOnMapVC-->
         <scene sceneID="Md9-xp-4Rw">
             <objects>
-                <viewController id="feX-iq-asI" userLabel="FindFriendOnMapVC" sceneMemberID="viewController">
+                <viewController id="feX-iq-asI" userLabel="FindFriendOnMapVC" customClass="UMPFriendLocationViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QRZ-v3-qhs"/>
                         <viewControllerLayoutGuide type="bottom" id="nRc-9e-sy3"/>
@@ -466,27 +475,35 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="FindFriendOnMapVC" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IMd-d0-TAh">
-                                <rect key="frame" x="79" y="75" width="162" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Description: Deal with the function that using map system to find this friend." translatesAutoresizingMaskIntoConstraints="NO" id="WZy-sy-OUS">
-                                <rect key="frame" x="40" y="367" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="YBV-d1-GT5">
+                                <rect key="frame" x="-6" y="65" width="332" height="454"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="G4y-Lv-c4w"/>
+                    <navigationItem key="navigationItem" id="G4y-Lv-c4w">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="KC6-PW-eRW">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Gwp-ky-6pO">
+                                <rect key="frame" x="212" y="5" width="92" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="send location">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendLocation:" destination="feX-iq-asI" eventType="touchUpInside" id="EVa-Gs-Jum"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="YBV-d1-GT5" id="Lzc-b5-bXV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3h2-Fa-E09" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1155" y="1133"/>
+            <point key="canvasLocation" x="1649" y="1159"/>
         </scene>
         <!--PersonalPageNC-->
         <scene sceneID="YlE-6d-dcp">
@@ -724,7 +741,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="eMe-uA-WdD"/>
         <segue reference="4kk-1d-s0M"/>
+        <segue reference="eMe-uA-WdD"/>
     </inferredMetricsTieBreakers>
 </document>
